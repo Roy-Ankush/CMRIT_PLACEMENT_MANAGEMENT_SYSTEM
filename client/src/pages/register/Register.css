@@ -1,0 +1,204 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: aqua;
+    background: url(./mountain.avif);
+    background-size: cover;
+    background-position: center;
+}
+.login-form{
+    width: 40vw;
+    background: transparent;
+    border: solid black 2px;
+    backdrop-filter: blur(20px);
+    color: rgb(240, 235, 235);
+    position: relative;
+    border-radius: 10px;
+    padding: 40px 40px;
+}
+.login-form h1{
+font-size: 35px;
+text-align: center;
+}
+
+.details .var{
+    position: relative;
+    left: 23px;
+    border-radius: 5px;
+    padding: 2px;
+    top: -6px;
+}
+.login-form .details{
+    width: 100%;
+    height: 50px;
+    margin: 40px 0px;
+}
+
+
+.details input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: solid black 2px;
+    border-radius: 40px;
+    font-size: 15px;
+    color: white;
+    padding: 20px 45px 20px 20px;
+}
+
+.details i{
+    position: absolute;
+    right: 45px;
+    line-height: 50px;
+    transform: translate(-50%);
+    font-size: 20px;
+}
+
+.login-form .rem-forgot{
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    padding: 10px;
+}
+
+.rem-forgot a{
+    text-decoration: none;
+    color: white;
+}
+.rem-forgot a:hover{
+   text-decoration: underline;
+}
+.rem-forgot .cb{
+  position: relative;
+  top: 2.5px;
+}
+.login-form .btn{
+    
+    width: 100%;
+    height: 45px;
+    background-color: whitesmoke;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+
+}
+
+.login-form .register-link{
+    font-size: 15px;
+    text-align: center;
+    position: relative;
+    top: 24px;
+    /* hello */
+}
+.register-link p a{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+
+}
+
+.register-link p a:hover{
+  text-decoration: underline;
+}
+
+input[type=password]::-ms-reveal {
+    display: none;
+  }
+.fa-lock{
+    cursor: pointer;
+}
+
+.more-login{
+    position: relative;
+    text-align: center;
+    top: 8px;
+}
+
+ .login-form .moreoption{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    top: 17px;
+}
+.login-form .moreoption > * { 
+    margin-right: 15px; 
+  }
+
+hr{
+    position: relative;
+    top: 15px;
+}
+
+/* media query for smaller screen size */
+@media (max-width: 1200px) {
+    .login-form{
+        width: 50vw;
+    }
+}
+
+@media (max-width: 700px) {
+    .login-form{  
+        width: 65vw;
+    }
+}
+@media (max-width: 500px) {
+    .login-form{  
+        width: 75vw;
+    }
+}
+@media (max-width: 430px) {
+    .login-form{  
+        width: 85vw;
+    }
+}
+@media (max-width: 390px) {
+    .login-form{  
+        width: 100vw;
+        height: 70vh;
+        background: transparent;
+        border: none;
+        backdrop-filter: blur(20px);
+        color: rgb(240, 235, 235);
+        position: relative;
+        border-radius: 10px;
+        padding: 30px 40px;
+    }
+    body{
+        backdrop-filter: blur(20px);
+    }
+    
+}   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
