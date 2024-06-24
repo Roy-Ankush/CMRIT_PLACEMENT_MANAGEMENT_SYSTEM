@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import jwt, { decode } from 'jsonwebtoken'
 import student from '../models/student.js'
+import teacher from '../models/teacher.js'
 import bcrypt from "bcrypt";
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
@@ -40,41 +41,68 @@ const connect_Database = async () => {
 // The below function is responsible for the connection of database
 connect_Database()
 
+
+const studentEmailRegex = /^[a-z]{4}([0-9]{2})([a-z]{2})@cmrit\.ac\.in$/;
+const teacherEmailRegex = /^([a-z]+(\.[a-z]+)*)\.(.)@cmrit\.ac\.in$/;
+
 app.post("/register", async (req, res) => {
   try {
-    const {email,password,confirm_password}=req.body;
-    if (password === confirm_password) {
-      const registeradmin = new student({email,password,confirm_password})
-      // after getting details and before storing it into DB use hashing
-      // here the pre method comes in action
-      // generate token with the help of jwt so creacte a async funcion in schema or models page and call it here.
-      const existingUser = await student.findOne({ email});
-      if (existingUser) {
-        console.log("Email already exists");
-        return res.status(400).send("Email already exists");
-      }else{
-        const result = await registeradmin.save();
-        console.log("data saved")
-        console.log(result)
-        // console.log(result._id);
-      }
-     
-    }else{
-        console.log("incorrect password")
-      res.send("incorrect password")
+    const { email, password, confirm_password } = req.body;
+
+    if (password !== confirm_password) {
+      console.log("Incorrect password");
+      return res.status(400).send("Passwords do not match");
     }
+
+    // Determine if the email belongs to a student or a teacher
+    let isStudent = studentEmailRegex.test(email);
+    let isTeacher = teacherEmailRegex.test(email);
+
+    if (!isStudent && !isTeacher) {
+      console.log("Invalid email format");
+      return res.status(400).send("Invalid email format");
+    }
+
+    const userModel = isStudent ? student : teacher;
+    
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      console.log("Email already exists");
+      return res.status(400).send("Email already exists");
+    }
+
+    const newUser = new userModel({ email, password,confirm_password });
+
+    // Save the new user
+    const result = await newUser.save();
+    console.log("Data saved");
+    console.log(result);
+    
+    return res.status(201).send("Registration successful");
   } catch (error) {
-    res.send(error);
+    console.log(error);
+    res.status(500).send("An error occurred during registration");
   }
-})
+});
+
 
 
 app.post('/login', async (req, res) => {
   try {
     // const {email ,password}=req.body   way to destructure 
-    const email = req.body.email;
-    const password = req.body.password
-    const useremail = await student.findOne({ email })
+    const { email, password } = req.body;
+
+    // Search in both student and teacher collections
+    const studentUser = await student.findOne({ email });
+    const teacherUser = await teacher.findOne({ email });
+
+    // Determine if user exists and get user details
+    const useremail = studentUser || teacherUser;
+
+    if (!useremail) {
+      console.log("User not found");
+      return res.status(404).json({ message: "User not found" });
+    }
     // console.log(useremail) return all the details matching with that email
     // console.log(useremail.password)
     if (useremail) {
