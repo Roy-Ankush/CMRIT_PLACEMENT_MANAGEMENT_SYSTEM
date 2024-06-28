@@ -17,13 +17,24 @@ const student_schema = new mongoose.Schema({
     },
     password:{
         type:String,
-        required:true,
+        // required:true,
         minLength:1,
         maxLength:15
     },
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true  // Allows null or empty values but enforces uniqueness
+    },
+    displayName: {
+        type: String
+    },
+    image: {
+        type: String // URL of the profile picture
+    },
     confirm_password:{
         type:String,
-        required:true,
+        // required:true,
         minLength:1,
         maxLength:15
     }
@@ -33,6 +44,8 @@ const student_schema = new mongoose.Schema({
 
 
 student_schema.pre("save", async function (next){
+    const pass=this.password;
+    console.log(pass)
     if(this.isModified("password")){
         // const hashpassword=await bcrypt.hash(password,10);
         console.log(`password before hashing:- ${this.password}`)

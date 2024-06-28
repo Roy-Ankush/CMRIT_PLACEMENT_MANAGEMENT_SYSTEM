@@ -21,6 +21,17 @@ const teacher_schema = new mongoose.Schema({
         minLength:1,
         maxLength:15
     },
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true  // Allows null or empty values but enforces uniqueness
+    },
+    displayName: {
+        type: String
+    },
+    image: {
+        type: String // URL of the profile picture
+    },
     confirm_password:{
         type:String,
         required:true,

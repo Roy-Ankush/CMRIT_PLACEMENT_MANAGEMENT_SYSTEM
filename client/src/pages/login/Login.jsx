@@ -1,76 +1,113 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { NavLink, useNavigate } from 'react-router-dom'
-import '../register/Register.css'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { NavLink, useNavigate } from 'react-router-dom';
+import styles from '../register/Register.module.css';
 
-const Registration = () => {
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-  // const [confirm_password, setconfirm_password] = useState()
-  const navigate = useNavigate()
+const Login = () => {
+  const loginWithGoogle = () => {
+    window.open('http://localhost:8000/auth/google/callback', '_self');
+  };
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState('student');
+  const navigate = useNavigate();
+
+  axios.defaults.withCredentials = true;
   
-  axios.defaults.withCredentials=true
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-      
-    console.log("i am iust below login axios")
-    console.log("before student route route")
-          axios.post('http://localhost:8000/login', {email, password})
-          .then(res => {
-            console.log(res)
-            if(res.data.Login) {
-                navigate("/student")
-            } else {
-                navigate('/')
-            }
-        })
-        .catch(err => console.log(err))
-      
-     
-      
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+        console.log("before");
+        const res = await axios.post('http://localhost:8000/api/user/login', { email, password,role });
+        
+
+        console.log(res.status)
+        if (res.status===200) { // ankit u need to add route based upon role here only don't disturb catch part
+          if(role==='student'){
+            navigate('/student');
+          }else if(role==='teacher'){
+            navigate('/')
+          }
+          
+        }
+    } catch (error) {
+        if(error.response.status===400){
+        navigate('/login');
+        }else{
+          // console.log(error.response.status) 404 getting on invalid email
+          navigate('/register')
+        }
+    }
+};
+
   return (
-    <div className="main-container">
-    <div className="login-form">
+    <div className={styles.mainContainer}>
+      <div className={styles.loginForm}>
         <form onSubmit={handleSubmit}>
-            <h1 className="login-logo">Login</h1>
-            <div className="details">
-                <span className="var">useremail</span>
-                <input type="email" name="email" className="userfield"  onChange={(e) => setEmail(e.target.value)} required/>
-                <i className="fa-solid fa-envelope"></i>
-            </div>
-                <div className="details">
-                <span className="var">password</span>
-                <input type="password" name="password" id="passwordField"  onChange={(e) => setPassword(e.target.value)} required/>
-                <i className="fa-solid fa-lock" id="togglePassword"></i>
-            </div>
-
-            <div className="rem-forgot">
-                <label><input type="checkbox" className="cb"/>  Remember me</label>
-                <a href="#">Forgot password</a>
-            </div>
-            <button type="submit" className="btn">Login</button>
-            
-            <div className="morelogin">
-                {/* <!-- <hr> --> */}
-                <p className="more-login">or login using</p>
-                {/* <!-- <hr> --> */}
-            </div>
-            <div className="moreoption">
-                <button type="submit" className="btn">  <i className="fa-brands fa-google"></i> Login using Google</button>
-               
-                {/* <!-- <i className="fa-brands fa-instagram"></i> -->
-                <!-- <i className="fa-brands fa-linkedin"></i> -->
-                <!-- <i className="fa-brands fa-github"></i> --> */}
-             </div>
-
-            <div className="register-link">
-                <p>Don"t have account?<NavLink to="/register"> register</NavLink></p>
-            </div>
+          <h1 className={styles.loginLogo}>Login</h1>
+          <div className={styles.details}>
+            <span className={styles.var}>useremail</span>
+            <input
+              type="email"
+              name="email"
+              className={styles.userField}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <i className={`fa-solid fa-envelope ${styles.faEnvelope}`}></i>
+          </div>
+          <div className={styles.details}>
+            <span className={styles.var}>password</span>
+            <input
+              type="password"
+              name="password"
+              id="passwordField"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <i className={`fa-solid fa-lock ${styles.faLock}`} id="togglePassword"></i>
+          </div>
+          <div className={styles.details}>
+                        <span className={styles.var}>role</span>
+                        <select
+                            name="role"
+                            className={styles.userField}
+                            onChange={(e) => setRole(e.target.value)}
+                            value={role}
+                        >
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="spc">SPC</option>
+                            <option value="fpc">FPC</option>
+                            <option value="tyl">TYL</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+          <div className={styles.remForgot}>
+            <label>
+              <input type="checkbox" className={styles.cb} /> Remember me
+            </label>
+            <a href="#">Forgot password</a>
+          </div>
+          <button type="submit" className={styles.btn}>
+            Login
+          </button>
+          <div className={styles.moreLogin}>
+            <p className={styles.moreLoginText}>or login using</p>
+          </div>
+          <div className={styles.moreOption}>
+            <button type="button" onClick={loginWithGoogle} className={styles.btn}>
+              <i className="fa-brands fa-google"></i> Login using Google
+            </button>
+          </div>
+          <div className={styles.registerLink}>
+            <p>
+              Don"t have account? <NavLink to="/register">register</NavLink>
+            </p>
+          </div>
         </form>
+      </div>
     </div>
-   </div>
-  )
-}
+  );
+};
 
-export default Registration
+export default Login;
