@@ -24,7 +24,7 @@ app.use(cors({
 
 
 //Database connectivity
-const connectionString = "mongodb://127.0.0.1:27017/cmrit";
+const connectionString = "mongodb+srv://kumarankitverma5:test123@cluster0.bvgikdc.mongodb.net/CMR";
 const connect_Database = async () => {
   try {
     const client = await mongoose.connect(connectionString, { });

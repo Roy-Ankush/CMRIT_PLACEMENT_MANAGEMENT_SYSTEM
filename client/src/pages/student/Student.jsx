@@ -1,6 +1,7 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
+import Navbar from '../../components/Navbar'
 
 function Student() {
   const navigate=useNavigate();
@@ -22,9 +23,10 @@ function Student() {
     })
   })
   return (
-    <div>
-      <h1>successfull login into student route</h1>
-    </div>
+    <>
+      <Navbar/>
+      <Outlet/>
+    </>
   )
 }
 

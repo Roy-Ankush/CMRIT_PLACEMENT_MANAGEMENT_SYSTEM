@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: center; /* Centers items horizontally */
+  align-items: center; /* Centers items vertically */
+  height: 100vh; /* Full viewport height */
+  background-color: #f0f0f0; /* Example background color */
+}
+
+.markscards {
+margin-top:80px ;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Centers items with equal space around */
+  gap: 35px;
+  padding: 18px; /* Adds padding around the grid */
+}
+
+.card {
+  background-color: #ede8fe; /* Use specified color */
+  width: calc(33.33% - 35px); /* Calculate width for 3 cards with gap */
+  min-width: 300px; /* Minimum width for each card */
+  height: 170px;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  color: black; /* Ensures the text is visible against the card background */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align items to the top */
+}
+
+.card h3 {
+  margin-top: 5px; /* Adjust to move the title higher */
+}
+
+.card p {
+  margin-top: 1px; /* Adjust to move the content higher */
+}

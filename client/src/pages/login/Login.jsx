@@ -26,8 +26,8 @@ const Login = () => {
         if (res.status===200) { // ankit u need to add route based upon role here only don't disturb catch part
           if(role==='student'){
             navigate('/student');
-          }else if(role==='teacher'){
-            navigate('/')
+          }else if(role==='fpc'){
+            navigate('/fpc')
           }
           
         }

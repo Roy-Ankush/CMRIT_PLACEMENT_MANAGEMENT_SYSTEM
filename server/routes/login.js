@@ -105,5 +105,11 @@ router.post('/api/user/login', async (req, res) => {
         console.log(error)
     }
   });
-
+  router.get("/api/user/fpc",verifyUser, async (req, res) => {
+    try {
+        return res.status(200).json({valid:true})
+    } catch (error) {
+        console.log(error)
+    }
+  });
   export default router;

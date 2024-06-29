@@ -1,0 +1,103 @@
+/* Colors */
+:root {
+  --primary-color: #3D52A0;
+  --background-color: #EDE8F5;
+}
+
+.recent-activity-tab {
+  display: flex;
+  gap: 20px;
+  background-color: var(--background-color);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.chatrooms-section {
+  flex: 1; /* Occupy 30% of the available space */
+  max-width: 30%;
+  order: 2; /* Reorder to place at the end */
+}
+
+.bulletin-board {
+  flex: 2; /* Occupy 70% of the available space */
+  max-width: 70%;
+  order: 1; /* Reorder to place at the beginning */
+}
+
+.chatroom-item {
+  background-color: #fff;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatroom-item:hover {
+  transform: translateY(-3px);
+  transition: transform 0.3s ease;
+}
+
+.chatroom-details {
+  flex: 1;
+  padding-right: 15px; /* Add space between text and button */
+}
+
+.join-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.join-button:hover {
+  background-color: #2e3f7f;
+}
+
+.news-board {
+  background-color: #fff;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.news-section {
+  margin-bottom: 15px;
+}
+
+.news-section-header {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.news-item {
+  background-color: #fff;
+  border-bottom: 1px solid var(--primary-color);
+  padding: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.news-item:last-child {
+  border-bottom: none;
+}
+
+.news-image img {
+  width: 100px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.news-details {
+  color: var(--primary-color);
+}
