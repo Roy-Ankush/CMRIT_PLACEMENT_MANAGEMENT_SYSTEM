@@ -8,6 +8,8 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import register from "../routes/register.js";
 import login from "../routes/login.js";
+import student from '../routes/student.js';
+import fpc from "../routes/fpc.js"
 
 const app = express();
 console.log(process.env.PORT)
@@ -41,7 +43,8 @@ connect_Database()
 
 app.use('/',register)
 app.use('/',login)
-// app.use('/',student)
+app.use('/',student)
+app.use('/',fpc)
 
 
 app.listen(port, () => {

@@ -129,12 +129,12 @@ text-align: center;
   text-decoration: underline;
 }
 
-input[type=password]::-ms-reveal {
+/* input[type=password]::-ms-reveal {
     display: none;
   }
 .fa-lock{
     cursor: pointer;
-}
+} */
 
 .moreLogin{
     position: relative;

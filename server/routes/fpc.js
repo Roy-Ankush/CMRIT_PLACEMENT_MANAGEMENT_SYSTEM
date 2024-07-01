@@ -3,12 +3,15 @@ import  {verifyUser}  from '../middleware/verifyUser.js'
 const router=express.Router()
 
 
-router.get("/api/user/student",verifyUser, async (req, res) => {
+router.get("/api/user/fpc",verifyUser, async (req, res) => {
     try {
         return res.status(200).json({valid:true})
     } catch (error) {
         console.log(error)
     }
   });
+
+
+  
   
   export default router;
