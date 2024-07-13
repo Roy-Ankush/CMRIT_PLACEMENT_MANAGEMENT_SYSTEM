@@ -9,14 +9,20 @@ const teacherEmailRegex = /^([a-z]+(\.[a-z]+)*)\.(.)@cmrit\.ac\.in$/;
 
 router.post("/api/user/register", async (req, res) => {
     try {
-      const { email, password, confirm_password } = req.body;
-      if (password !== confirm_password) {
-        return res.status(401).send("Passwords do not match");
-      }
+      const { email,password } = req.body;
       // Determine if the email belongs to a student or a teacher
       let isStudent = studentEmailRegex.test(email);
       let isTeacher = teacherEmailRegex.test(email);
-
+      if(isStudent){
+        if (process.env.STUDENT_PASSWORD !==password) {
+          return res.status(401).send("Passwords do not match");
+        }
+      }else if(isTeacher){
+        if (process.env.STAFF_PASSWORD !==password) {
+          return res.status(401).send("Passwords do not match");
+        }
+      }
+      // trying to register using personal email
       if (!isStudent && !isTeacher) {
         return res.status(400).send("Invalid email format");
       }
@@ -28,7 +34,7 @@ router.post("/api/user/register", async (req, res) => {
         return res.status(409).send("Email already exists");
       }
   
-      const newUser = new userModel({ email, password,confirm_password });
+      const newUser = new userModel({ email,password });
       // Save the new user
       const result = await newUser.save();
       return res.status(201).send("Registration successful");

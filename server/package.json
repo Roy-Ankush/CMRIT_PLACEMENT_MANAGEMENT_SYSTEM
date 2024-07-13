@@ -4,12 +4,14 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch src/.env --ext js,json --ignore src/public src/app.js"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "",  
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",

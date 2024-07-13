@@ -16,11 +16,13 @@ const Registration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/api/user/register', { email, password, confirm_password });
+     const x= await axios.post('http://localhost:8000/api/user/register', { email,password });
+     console.log(x)
       console.log('I am just below register axios');
       console.log('before login route');
       navigate('/login');
     } catch (error) {
+      console.log(error.response.status)
       navigate('/register');
       console.log('Some error happens in register file');
       console.log(error);
@@ -41,10 +43,10 @@ const Registration = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
-            <i className={`fa-solid fa-user ${styles.faUser}`}></i>
+            {/* <i className={`fa-solid fa-user ${styles.faUser}`}></i> */}
           </div>
           <div className={styles.details}>
-            <span className={styles.var}>password</span>
+            <span className={styles.var}>confirm_password</span>
             <input
               type="password"
               name="password"
@@ -54,7 +56,7 @@ const Registration = () => {
             />
             <i className={`fa-solid fa-lock ${styles.faLock}`} id="togglePassword"></i>
           </div>
-          <div className={styles.details}>
+          {/* <div className={styles.details}>
             <span className={styles.var}>confirm password</span>
             <input
               type="password"
@@ -63,24 +65,23 @@ const Registration = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
-            <i className={`fa-solid fa-lock ${styles.faLock}`} id="togglePassword2"></i>
-          </div>
-          <div className={styles.remForgot}>
+          </div> */}
+          {/* <div className={styles.remForgot}>
             <label>
               <input type="checkbox" className={styles.cb} /> Remember me
             </label>
-          </div>
+          </div> */}
           <button type="submit" className={styles.btn} value="register">
             Register
           </button>
-          <div className={styles.moreLogin}>
+          {/* <div className={styles.moreLogin}>
             <p className={styles.moreLoginText}>or register using</p>
-          </div>
-          <div className={styles.moreOption}>
+          </div> */}
+          {/* <div className={styles.moreOption}>
             <button type="button" className={styles.btn} onClick={loginWithGoogle} value="register">
               <i className="fa-brands fa-google"></i> Login using google
             </button>
-          </div>
+          </div> */}
           <div className={styles.registerLink}>
             <p>
               Already have an account? <NavLink to="/login">login</NavLink>

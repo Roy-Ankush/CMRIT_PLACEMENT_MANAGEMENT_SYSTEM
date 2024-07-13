@@ -4,14 +4,15 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import styles from '../register/Register.module.css';
 
 const Login = () => {
-  const loginWithGoogle = () => {
-    window.open('http://localhost:8000/auth/google/callback', '_self');
-  };
+  // const loginWithGoogle = () => {
+  //   window.open('http://localhost:8000/auth/google/callback', '_self');
+  // };
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('student');
   const navigate = useNavigate();
+  
 
   axios.defaults.withCredentials = true;
   
@@ -19,17 +20,17 @@ const Login = () => {
     e.preventDefault();
     try {
         console.log("before");
-        const res = await axios.post('http://localhost:8000/api/user/login', { email, password,role });
-        
-
-        console.log(res.status)
-        if (res.status===200) { // ankit u need to add route based upon role here only don't disturb catch part
-          if(role==='student'){
-            navigate('/student');
-          }else if(role==='fpc'){
+        const res = await axios.post('http://localhost:8000/api/user/login', { email, password,role});
+        const fetchrole = res.data.roles;
+        // console.log("the role fetched is",fetchrole)
+        if (res.status===200) { 
+          if(fetchrole==='spc'){
+            navigate('/spc');
+          }else if(fetchrole==='fpc'){
             navigate('/fpc')
+          }else{
+            navigate('/student');
           }
-          
         }
     } catch (error) {
         if(error.response.status===400){
@@ -54,7 +55,7 @@ const Login = () => {
               className={styles.userField}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <i className={`fa-solid fa-envelope ${styles.faEnvelope}`}></i>
+            {/* <i className={`fa-solid fa-envelope ${styles.faEnvelope}`}></i> */}
           </div>
           <div className={styles.details}>
             <span className={styles.var}>password</span>
@@ -64,7 +65,7 @@ const Login = () => {
               id="passwordField"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <i className={`fa-solid fa-lock ${styles.faLock}`} id="togglePassword"></i>
+            {/* <i className={`fa-solid fa-lock ${styles.faLock}`} id="togglePassword"></i> */}
           </div>
           <div className={styles.details}>
                         <span className={styles.var}>role</span>
@@ -74,11 +75,11 @@ const Login = () => {
                             onChange={(e) => setRole(e.target.value)}
                             value={role}
                         >
-                            <option value="student">Student</option>
-                            <option value="teacher">Teacher</option>
-                            <option value="spc">SPC</option>
-                            <option value="fpc">FPC</option>
-                            <option value="tyl">TYL</option>
+                            <option value="student">student</option>
+                            <option value="spc">spc</option>
+                            <option value="fpc">fpc</option>
+                            <option value="placementtrainer">Plcement Trainer</option>
+                            <option value="placementofficer">Placement Officer</option>
                             <option value="admin">Admin</option>
                         </select>
                     </div>
@@ -91,14 +92,14 @@ const Login = () => {
           <button type="submit" className={styles.btn}>
             Login
           </button>
-          <div className={styles.moreLogin}>
+          {/* <div className={styles.moreLogin}>
             <p className={styles.moreLoginText}>or login using</p>
-          </div>
-          <div className={styles.moreOption}>
+          </div> */}
+          {/* <div className={styles.moreOption}>
             <button type="button" onClick={loginWithGoogle} className={styles.btn}>
               <i className="fa-brands fa-google"></i> Login using Google
             </button>
-          </div>
+          </div> */}
           <div className={styles.registerLink}>
             <p>
               Don"t have account? <NavLink to="/register">register</NavLink>

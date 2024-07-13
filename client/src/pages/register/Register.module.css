@@ -9,13 +9,13 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: aqua;
-    background: url(./mountain.avif);
+    background-color: rgb(21, 98, 98);
+    /* background: url(./register.jpg); */
     background-size: cover;
     background-position: center;
 }
 .loginForm{
-    width: 40vw;
+    width: 35vw;
     background: transparent;
     border: solid black 2px;
     backdrop-filter: blur(20px);
@@ -89,6 +89,7 @@ text-align: center;
 .remForgot a{
     text-decoration: none;
     color: white;
+    padding: 8px 0px;
 }
 .remForgot a:hover{
    text-decoration: underline;
@@ -108,6 +109,7 @@ text-align: center;
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
+    margin-top: 12px;
 
 }
 
@@ -130,7 +132,7 @@ text-align: center;
 }
 
 /* input[type=password]::-ms-reveal {
-    display: none;
+    display: block;
   }
 .fa-lock{
     cursor: pointer;

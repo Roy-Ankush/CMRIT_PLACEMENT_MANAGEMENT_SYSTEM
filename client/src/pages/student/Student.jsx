@@ -21,7 +21,7 @@ function Student() {
    console.log("inside student page of catch block")
    console.log(err)
     })
-  })
+  }, [])
   return (
     <>
       <Navbar/>

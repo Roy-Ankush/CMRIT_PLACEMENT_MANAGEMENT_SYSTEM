@@ -1,7 +1,7 @@
 //Database connectivity
 import mongoose from "mongoose";
 import validator from "validator";
-// import bcrypt from "bcrypt";
+import bcrypt from "bcrypt";
 import hashPassword from "../middleware/hashPassword.js";
 
 const student_schema = new mongoose.Schema({
@@ -20,7 +20,7 @@ const student_schema = new mongoose.Schema({
         type:String,
         // required:true,
         minLength:1,
-        maxLength:15
+        maxLength:25
     },
     googleId: {
         type: String,
