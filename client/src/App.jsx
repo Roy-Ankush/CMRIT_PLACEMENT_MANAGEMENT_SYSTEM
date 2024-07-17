@@ -1,3 +1,4 @@
+import {ToastContainer} from 'react-toastify'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from './pages/home/Home'
 import Register from './pages/register/Register'
@@ -13,13 +14,20 @@ import Validate from './pages/fpc/Validate'
 import Forms from './pages/fpc/Forms'
 import StudentList from './pages/fpc/StudentList'
 import KycData from './pages/fpc/KycData'
+import ForgotPass from './pages/forgot_password/ForgotPass'
+import ResetPassword from './pages/reset_pass/ResetPassword'
+
 function App() {
   return (
     <BrowserRouter>
+    <ToastContainer/>
       <Routes>
         <Route path='/' element={<Register/> }></Route>
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/login' element={<Login />}></Route>
+        <Route path='/forgotPassword' element={<ForgotPass />}></Route>
+        <Route path='/resetPassword/:id/:token' element={<ResetPassword />}></Route>
+
 
         <Route path='/student' element={<Student />}>
           <Route path='/student/tyl' element={<Tyl />} />

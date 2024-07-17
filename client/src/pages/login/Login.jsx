@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styles from '../register/Register.module.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   // const loginWithGoogle = () => {
@@ -22,14 +24,38 @@ const Login = () => {
         console.log("before");
         const res = await axios.post('http://localhost:8000/api/user/login', { email, password,role});
         const fetchrole = res.data.roles;
+        // console.log("the role is",role)
         // console.log("the role fetched is",fetchrole)
         if (res.status===200) { 
-          if(fetchrole==='spc'){
+          if(fetchrole==='spc' && role==='spc'){
             navigate('/spc');
-          }else if(fetchrole==='fpc'){
+            toast.success('SPC Login successful!', {
+              position: 'top-center',
+              autoClose: 2000,
+              pauseOnHover: false
+            })
+          }else if(fetchrole==='fpc' && role==='fpc'){
+            // matych role input from fntend and bkend and role also to ..............
             navigate('/fpc')
-          }else{
+            toast.success('FPC Login successful!', {
+              position: 'top-center',
+              autoClose: 2000,
+              pauseOnHover: false
+            })
+          }else if(fetchrole==='student' && role==='student'){
             navigate('/student');
+            toast.success('Student Login successful!', {
+              position: 'top-center',
+              autoClose: 2000,
+              pauseOnHover: false
+            })
+          }else{
+            navigate('/login')
+            toast.error('Inavlid Role!', {
+              position: 'top-center',
+              autoClose: 2000,
+              pauseOnHover: false
+            })
           }
         }
     } catch (error) {
@@ -53,7 +79,7 @@ const Login = () => {
               type="email"
               name="email"
               className={styles.userField}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)} required
             />
             {/* <i className={`fa-solid fa-envelope ${styles.faEnvelope}`}></i> */}
           </div>
@@ -63,7 +89,7 @@ const Login = () => {
               type="password"
               name="password"
               id="passwordField"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}required
             />
             {/* <i className={`fa-solid fa-lock ${styles.faLock}`} id="togglePassword"></i> */}
           </div>
@@ -73,7 +99,7 @@ const Login = () => {
                             name="role"
                             className={styles.userField}
                             onChange={(e) => setRole(e.target.value)}
-                            value={role}
+                            value={role} required
                         >
                             <option value="student">student</option>
                             <option value="spc">spc</option>
@@ -87,7 +113,8 @@ const Login = () => {
             <label>
               <input type="checkbox" className={styles.cb} /> Remember me
             </label>
-            <a href="#">Forgot password</a>
+            {/* <a href="#">Forgot password</a> */}
+            <NavLink to="/forgotPassword"> <u>Forgot password</u></NavLink>
           </div>
           <button type="submit" className={styles.btn}>
             Login

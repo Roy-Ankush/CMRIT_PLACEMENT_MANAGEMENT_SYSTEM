@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import styles from './Register.module.css';
 
 const Registration = () => {
@@ -20,7 +22,12 @@ const Registration = () => {
      console.log(x)
       console.log('I am just below register axios');
       console.log('before login route');
-      navigate('/login');
+      navigate('/login')
+      toast.success('Register successful!', {
+        position: 'top-center',
+        autoClose: 2000,
+        pauseOnHover: false
+      })
     } catch (error) {
       console.log(error.response.status)
       navigate('/register');

@@ -2,7 +2,7 @@ import express from 'express'
 import jwt, { decode } from 'jsonwebtoken'
 import student from '../models/student.js'
 import teacher from '../models/teacher.js';
-import User from '../models/role.js';
+import User_role from '../models/role.js';
 import bcrypt from "bcrypt";
 const router = express.Router()
 import dotenv from 'dotenv'
@@ -29,14 +29,14 @@ router.post('/api/user/login', async (req, res) => {
     let role_exist
     let new_role
     if(role!='student'){
-      userrole=await User.findOne({ email });
+      userrole=await User_role.findOne({ email });
       role_exist=userrole
       if(!role_exist){
         console.log("select proper role")
         return res.status(404).json({ message: "User role is wrong" });
       }
     }else{
-      new_role=student
+      new_role='student'
     }
     // Determine if user exists and get user details
     const useremail = studentUser || teacherUser
@@ -65,7 +65,7 @@ router.post('/api/user/login', async (req, res) => {
           res.cookie('refreshToken', refreshToken,
             { maxAge: 300000, httpOnly: true, secure: true, sameSite: 'strict' })
 
-          return res.status(200).json({ accessToken, refreshToken, Login: true,roles:userrole?userrole.role:new_role});
+          return res.status(200).json({ accessToken, refreshToken, Login: true, roles:userrole?userrole.role:new_role});
         } else {
           return res.status(400).json({ Login: false })
         }

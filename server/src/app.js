@@ -10,6 +10,8 @@ import register from "../routes/register.js";
 import login from "../routes/login.js";
 import student from '../routes/student.js';
 import fpc from "../routes/fpc.js"
+import forgotPassword from "../routes/forgotPassword.js"
+import resetPassword from "../routes/resetPassword.js"
 
 const app = express();
 console.log(process.env.PORT)
@@ -45,6 +47,8 @@ app.use('/',register)
 app.use('/',login)
 app.use('/',student)
 app.use('/',fpc)
+app.use('/',forgotPassword)
+app.use('/',resetPassword)
 
 
 app.listen(port, () => {
