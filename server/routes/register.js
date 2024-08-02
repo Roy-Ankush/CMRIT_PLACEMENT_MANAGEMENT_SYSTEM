@@ -13,6 +13,12 @@ router.post("/api/user/register", async (req, res) => {
       // Determine if the email belongs to a student or a teacher
       let isStudent = studentEmailRegex.test(email);
       let isTeacher = teacherEmailRegex.test(email);
+      const userModel = isStudent ? student : teacher; 
+      const existingUser = await userModel.findOne({ email });
+      if (existingUser) {
+        // 409 code for conflict
+        return res.status(409).send("Email already exists");
+      }
       if(isStudent){
         if (process.env.STUDENT_PASSWORD !==password) {
           return res.status(401).send("Passwords do not match");
@@ -24,16 +30,8 @@ router.post("/api/user/register", async (req, res) => {
       }
       // trying to register using personal email
       if (!isStudent && !isTeacher) {
-        return res.status(400).send("Invalid email format");
+        return res.status(422).json({ email: false, message: 'Invalid email' });
       }
-  
-      const userModel = isStudent ? student : teacher; 
-      const existingUser = await userModel.findOne({ email });
-      if (existingUser) {
-        // 409 code for conflict
-        return res.status(409).send("Email already exists");
-      }
-  
       const newUser = new userModel({ email,password });
       // Save the new user
       const result = await newUser.save();

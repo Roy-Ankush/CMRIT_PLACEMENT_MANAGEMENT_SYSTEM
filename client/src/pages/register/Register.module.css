@@ -186,10 +186,10 @@ hr{
 }
 @media (max-width: 390px) {
     .loginForm{  
-        width: 100vw;
-        height: 70vh;
+        width: 90vw;
+        height: 90vh;
         background: transparent;
-        border: none;
+        /* border: none; */
         backdrop-filter: blur(20px);
         color: rgb(240, 235, 235);
         position: relative;

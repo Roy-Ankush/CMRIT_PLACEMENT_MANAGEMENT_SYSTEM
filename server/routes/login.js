@@ -25,6 +25,8 @@ router.post('/api/user/login', async (req, res) => {
     }
     else if (isTeacher) {
       teacherUser = await teacher.findOne({ email });
+    }else{
+      res.send(404)
     }
     let role_exist
     let new_role
@@ -33,7 +35,7 @@ router.post('/api/user/login', async (req, res) => {
       role_exist=userrole
       if(!role_exist){
         console.log("select proper role")
-        return res.status(404).json({ message: "User role is wrong" });
+        return res.status(422).json({ message: "User role is wrong" });
       }
     }else{
       new_role='student'
@@ -50,7 +52,7 @@ router.post('/api/user/login', async (req, res) => {
       const userpassword = useremail.password
       // const userpassword = useremail ? useremail.password : null;
       if (!userpassword) {
-        return res.status(401).send("password not matched")
+        return res.status(400)
       }
         const ismatch = await bcrypt.compare(password, userpassword)
         if (ismatch) {

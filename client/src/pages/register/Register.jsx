@@ -19,9 +19,6 @@ const Registration = () => {
     e.preventDefault();
     try {
      const x= await axios.post('http://localhost:8000/api/user/register', { email,password });
-     console.log(x)
-      console.log('I am just below register axios');
-      console.log('before login route');
       navigate('/login')
       toast.success('Register successful!', {
         position: 'top-center',
@@ -30,6 +27,33 @@ const Registration = () => {
       })
     } catch (error) {
       console.log(error.response.status)
+      if(error.response.status===409){
+        toast.error('Email already exist in database!', {
+          position: 'top-center',
+          autoClose: 2000,
+          pauseOnHover: false
+        })
+      }
+     else if(error.response.status===422){
+        toast.error('Invalid Email format!', {
+          position: 'top-center',
+          autoClose: 2000,
+          pauseOnHover: false
+        })
+      }
+      else if(error.response.status===401){
+        toast.error('Invalid Confirm_password!', {
+          position: 'top-center',
+          autoClose: 2000,
+          pauseOnHover: false
+        })
+      }else{
+        toast.error('Server Error!', {
+          position: 'top-center',
+          autoClose: 2000,
+          pauseOnHover: false
+        })
+      }
       navigate('/register');
       console.log('Some error happens in register file');
       console.log(error);

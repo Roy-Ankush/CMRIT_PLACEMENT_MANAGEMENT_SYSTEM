@@ -5,6 +5,7 @@ import styles from '../register/Register.module.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const Login = () => {
   // const loginWithGoogle = () => {
   //   window.open('http://localhost:8000/auth/google/callback', '_self');
@@ -16,7 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
   
 
-  axios.defaults.withCredentials = true;
+  axios.defaults.withCredentials = true;  //This ensures cookies are sent with the request
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,6 +50,58 @@ const Login = () => {
               autoClose: 2000,
               pauseOnHover: false
             })
+          }
+          else if(fetchrole==='admin'){ // need to think on it
+            if(role=="student"){
+              navigate('/student');
+              toast.success('Student Login successful!', {
+                position: 'top-center',
+                autoClose: 2000,
+                pauseOnHover: false
+              })
+            }else if(role==="fpc"){
+              navigate('/fpc');
+              toast.success('Fpc Login successful!', {
+                position: 'top-center',
+                autoClose: 2000,
+                pauseOnHover: false
+              })
+            }else if(role==="spc"){
+              navigate('/fpc');
+              toast.success('Spc Login successful!', {
+                position: 'top-center',
+                autoClose: 2000,
+                pauseOnHover: false
+              })
+            }else if(role==="placementtrainer"){
+              navigate('/placementtrainer');
+              toast.success('PlacementTrainer Login successful!', {
+                position: 'top-center',
+                autoClose: 2000,
+                pauseOnHover: false
+              })
+            }else if(role==="placementofficer"){
+              navigate('/placementofficer');
+              toast.success('PlacementOfficer Login successful!', {
+                position: 'top-center',
+                autoClose: 2000,
+                pauseOnHover: false
+              })
+            }
+          }else if(fetchrole==='placementtrainer' && role==='placementtrainer'){
+            navigate('/placementtrainer');
+            toast.success('Placemenetrainer Login successful!', {
+              position: 'top-center',
+              autoClose: 2000,
+              pauseOnHover: false
+            })
+          }else if(fetchrole==='placementofficer' && role==='placementofficer'){
+            navigate('/placementofficer');
+            toast.success('Placementofficer Login successful!', {
+              position: 'top-center',
+              autoClose: 2000,
+              pauseOnHover: false
+            })
           }else{
             navigate('/login')
             toast.error('Inavlid Role!', {
@@ -59,16 +112,41 @@ const Login = () => {
           }
         }
     } catch (error) {
-        if(error.response.status===400){
+        if(error.response.status===422){
+          toast.error('Inavlid Role!', {
+            position: 'top-center',
+            autoClose: 2000,
+            pauseOnHover: false
+          })
         navigate('/login');
-        }else{
-          // console.log(error.response.status) 404 getting on invalid email
+        }else if(error.response.status===404){
+          toast.error('Invaldi email format!', {
+            position: 'top-center',
+            autoClose: 2000,
+            pauseOnHover: false
+          })
+          navigate('/login')
+        }else if(error.response.status===400){
+          toast.error('Invalid password!', {
+            position: 'top-center',
+            autoClose: 2000,
+            pauseOnHover: false
+          })
+          navigate('/login')
+        }else if(error.response.status===404){
+          toast.error('User not Exist Please register!', {
+            position: 'top-center',
+            autoClose: 2000,
+            pauseOnHover: false
+          })
           navigate('/register')
         }
     }
 };
 
   return (
+    <>
+   
     <div className={styles.mainContainer}>
       <div className={styles.loginForm}>
         <form onSubmit={handleSubmit}>
@@ -135,6 +213,7 @@ const Login = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

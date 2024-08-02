@@ -12,6 +12,8 @@ import student from '../routes/student.js';
 import fpc from "../routes/fpc.js"
 import forgotPassword from "../routes/forgotPassword.js"
 import resetPassword from "../routes/resetPassword.js"
+// import checkRole from '../middleware/checkrole.js';
+
 
 const app = express();
 console.log(process.env.PORT)
@@ -25,6 +27,7 @@ app.use(cors({
   methods:"GET,PUT,POST,DELETE"
 }
 ))
+
 
 
 //Database connectivity
