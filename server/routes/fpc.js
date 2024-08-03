@@ -5,7 +5,7 @@ import checkRole from '../middleware/checkrole.js';
 
 const router = express.Router();
 
-router.get("/api/user/fpc/chat", higherOrderMiddleware(verifyUser, checkRole), async (req, res) => {
+router.get("/api/user/fpc", higherOrderMiddleware(verifyUser, checkRole), async (req, res) => {
   try {
     return res.status(200).json({ valid: true });
   } catch (error) {
