@@ -6,7 +6,6 @@ const pdfParse = require('pdf-parse');
 const XLSX = require('xlsx');
 const Student_mark = require('../models/Student_mark.cjs'); // Import the student model
 
-
 const router = express.Router();
 const excelFileUrl = 'https://docs.google.com/spreadsheets/d/10ugHGs6W7JvqzerWl3hQNuIqAnzKvffD/export?format=xlsx';
 
@@ -58,8 +57,27 @@ const fetchExcelData = async (usn) => {
 };
 
 router.post('/api/user/marks_verification', async (req, res) => {
-  const gdriveLink = req.body.gdriveLink;
-  const fileId = gdriveLink.match(/[-\w]{25,}/);
+  const {
+    ugMarksLink,
+    resumeLink,
+    videoResumeLink,
+    tenthMarksLink,
+    twelfthMarksLink,
+    panLink,
+    aadharLink,
+    passportLink,
+    photoLink,
+    collegeIdLink
+  } = req.body;
+
+  // Debugging: Log the request body
+  console.log('Request body:', req.body);
+
+  if (!ugMarksLink) {
+    return res.status(400).json({ error: "Google Drive link is required" });
+  }
+
+  const fileId = ugMarksLink.match(/[-\w]{25,}/);
 
   if (!fileId) {
     return res.status(400).json({ error: "Invalid Google Drive link" });
@@ -172,6 +190,16 @@ router.post('/api/user/marks_verification', async (req, res) => {
             $set: {
               name: studentName,
               status: verificationStatus,
+              resumeLink,
+              videoResumeLink,
+              tenthMarksLink,
+              twelfthMarksLink,
+              ugMarksLink, // Ensure ugMarksLink is saved
+              panLink,
+              aadharLink,
+              passportLink,
+              photoLink,
+              collegeIdLink
             }
           },
           { upsert: true }  // Create a new document if one does not exist
