@@ -8,6 +8,7 @@ import Tyl from './pages/student/Tyl'
 import PlacementForm from './pages/student/PlacementForm'
 import RecentActivity from './pages/student/RecentActivity'
 import Chats from './pages/fpc/Chats'
+import Verify from './pages/fpc/Verify'
 import ChatPage from './pages/fpc/ChatPage'
 import Fpc from './pages/fpc/Fpc'
 import Validate from './pages/fpc/Validate'
@@ -36,8 +37,11 @@ function App() {
         </Route>
 
         <Route path='/fpc' element={<Fpc/>}>
+          <Route path='/fpc/verify' element={<Verify/>}></Route> 
+
           <Route path='/fpc/chat' element={<Chats/>}></Route> 
           <Route path='/fpc/chat/:chatId' element={<ChatPage/>} />
+
           <Route path='/fpc/validate' element={<Validate/>}></Route> 
           <Route path='/fpc/validate/forms' element={<Forms/>}></Route> 
           <Route path='/fpc/validate/forms/studentlist' element={<StudentList/>}></Route> 

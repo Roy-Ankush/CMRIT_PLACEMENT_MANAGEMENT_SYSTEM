@@ -1,18 +1,22 @@
 import dotenv from 'dotenv'
 dotenv.config();
-
 import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from 'cors'
+import { createRequire } from 'module';
 import cookieParser from 'cookie-parser'
 import register from "../routes/register.js";
 import login from "../routes/login.js";
 import student from '../routes/student.js';
 import fpc from "../routes/fpc.js"
+// import Mark_verification from "../routes/Mark_verification.js";
 import forgotPassword from "../routes/forgotPassword.js"
 import resetPassword from "../routes/resetPassword.js"
 // import checkRole from '../middleware/checkrole.js';
+
+const requireCjs = createRequire(import.meta.url);
+const Mark_verification = requireCjs('../routes/Mark_verification.cjs');
 
 
 const app = express();
@@ -29,9 +33,8 @@ app.use(cors({
 ))
 
 
-
 //Database connectivity
-const connectionString = "mongodb://localhost:27017/cmrit";
+const connectionString = "mongodb+srv://kumarankitverma5:test123@cluster0.bvgikdc.mongodb.net/CMR?retryWrites=true&w=majority&appName=Cluster0";
 const connect_Database = async () => {
   try {
     const client = await mongoose.connect(connectionString, { });
@@ -52,6 +55,7 @@ app.use('/',student)
 app.use('/',fpc)
 app.use('/',forgotPassword)
 app.use('/',resetPassword)
+app.use('/',Mark_verification)
 
 
 app.listen(port, () => {
