@@ -6,6 +6,7 @@ function Navbar() {
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState("recentactivity");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const userEmail = localStorage.getItem('userEmail');
 
   // Effect to navigate to the default tab on component mount
   useEffect(() => {
@@ -68,7 +69,7 @@ function Navbar() {
   </div>
   <div className={style.profile} onClick={toggleDropdown}>
     <div className={style.profileInfo}>
-      <span className={style.username}>Ankit </span>
+      <span className={style.username}>{userEmail}</span>
     </div>
     <img src="/profile.png" alt="" className={style.profilelogo} />
     {isDropdownOpen && (
