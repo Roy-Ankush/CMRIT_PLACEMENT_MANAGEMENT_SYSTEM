@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './css/PlacementForm.module.css';
-import Spinner from './Spinner';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [gdriveLink, setGdriveLink] = useState('');
-  const [studentInfo, setStudentInfo] = useState({});
   const [tableContent, setTableContent] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  // const [students, setStudents] = useState([]);
-  // const [studentsLoading, setStudentsLoading] = useState(false);
-  // const [studentsError, setStudentsError] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   const isValidGoogleDriveLink = (link) => {
     const regex = /https:\/\/drive\.google\.com\/file\/d\/[-\w]{25,}/;
@@ -21,9 +19,9 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setStudentInfo({});
     setTableContent([]);
     setLoading(true);
+    setSubmitted(false);
 
     if (!isValidGoogleDriveLink(gdriveLink)) {
       setError('Invalid Google Drive link.');
@@ -33,9 +31,13 @@ function App() {
 
     try {
       const response = await axios.post('http://localhost:8000/api/user/marks_verification', { gdriveLink });
-      const { studentName, usn, semester, mismatches } = response.data;
-      setStudentInfo({ studentName, usn, semester });
+      const { mismatches } = response.data;
       setTableContent(mismatches);
+
+      // Log all details to the console
+      console.log('Fetched data:', response.data);
+      console.log('Mismatches:', mismatches);
+      setSubmitted(true);
     } catch (err) {
       setError('Error fetching or parsing PDF. Please check the console for more details.');
       console.error(err);
@@ -45,8 +47,8 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Marks Verification</h1>
+    <div className={styles.App}>
+      <h1>Upload Results</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -55,70 +57,21 @@ function App() {
           onChange={(e) => setGdriveLink(e.target.value)}
           aria-label="Google Drive link"
         />
-        <button type="submit">Extract Table</button>
+        <button type="submit" disabled={loading}>
+          Submit
+        </button>
       </form>
       {error && <p className={styles.error}>{error}</p>}
-      {loading ? (
-        <div className={styles.spinner}><Spinner /></div>
-      ) : (
-        <>
-          {Object.keys(studentInfo).length > 0 && (
-            <div className={styles['student-info']}>
-              <p><strong>Name:</strong> {studentInfo.studentName}</p>
-              <p><strong>USN:</strong> {studentInfo.usn}</p>
-              <p><strong>Semester:</strong> {studentInfo.semester}</p>
-            </div>
-          )}
-          {tableContent.length > 0 && (
-            <table className={styles.table}>
-              <thead>
-                <tr>
-                  <th>Subject Code</th>
-                  <th>Total Marks</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {tableContent.map((row, index) => (
-                  <tr key={index}>
-                    <td>{row.subjectCode}</td>
-                    <td>{row.pdfMarks}</td>
-                    <td className={row.status === 'Matched' ? styles.matched : styles['not-matched']}>
-                      {row.status}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </>
+      {loading && (
+        <div className={styles.spinner}>
+          <FontAwesomeIcon icon={faSpinner} spin size="lg" />
+        </div>
       )}
-
-      {/* <h2>Student List</h2>
-      {studentsLoading ? (
-        <div className={styles.spinner}><Spinner /></div>
-      ) : studentsError ? (
-        <p className={styles.error}>{studentsError}</p>
-      ) : (
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>USN</th>
-              <th>Name</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {students.map((student, index) => (
-              <tr key={index}>
-                <td>{student.usn}</td>
-                <td>{student.name}</td>
-                <td>{student.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )} */}
+      {submitted && !loading && (
+        <div className={styles.spinner}>
+          <FontAwesomeIcon icon={faCheck} size="lg" />
+        </div>
+      )}
     </div>
   );
 }

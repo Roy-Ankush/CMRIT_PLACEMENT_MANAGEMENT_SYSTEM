@@ -1,19 +1,22 @@
 import dotenv from 'dotenv'
 dotenv.config();
-
 import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from 'cors'
+import { createRequire } from 'module';
 import cookieParser from 'cookie-parser'
 import register from "../routes/register.js";
 import login from "../routes/login.js";
 import student from '../routes/student.js';
 import fpc from "../routes/fpc.js"
-import Mark_verification from "../routes/Mark_verification.js";
+// import Mark_verification from "../routes/Mark_verification.js";
 import forgotPassword from "../routes/forgotPassword.js"
 import resetPassword from "../routes/resetPassword.js"
 // import checkRole from '../middleware/checkrole.js';
+
+const requireCjs = createRequire(import.meta.url);
+const Mark_verification = requireCjs('../routes/Mark_verification.cjs');
 
 
 const app = express();

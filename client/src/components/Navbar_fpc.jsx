@@ -66,6 +66,15 @@ function Navbar() {
                 Validate
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="verify"
+                className={style.navlink}
+                onClick={() => handleTabChange("verify")}
+              >
+                Verify
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div className={style.profile} onClick={toggleDropdown}>

@@ -1,15 +1,13 @@
-import express from 'express';
-import axios from 'axios';
-import fs from 'fs';
-import path from 'path';
-import pdfParse from 'pdf-parse';
-import XLSX from 'xlsx';
-import Student_mark from '../models/Student_mark.js'; // Import the student model
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
+const express = require('express');
+const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
+const pdfParse = require('pdf-parse');
+const XLSX = require('xlsx');
+const Student_mark = require('../models/Student_mark.cjs'); // Import the student model
 
 
-
+const router = express.Router();
 const excelFileUrl = 'https://docs.google.com/spreadsheets/d/10ugHGs6W7JvqzerWl3hQNuIqAnzKvffD/export?format=xlsx';
 
 // Function to download and read the Excel file
@@ -68,13 +66,7 @@ router.post('/api/user/marks_verification', async (req, res) => {
   }
 
   const pdfUrl = `https://drive.google.com/uc?export=download&id=${fileId[0]}`;
-  // const filePath = path.join(__dirname, 'temp.pdf');
-  const __dirname = dirname(fileURLToPath(import.meta.url));
-
-
-  // const __dirname = new URL('.', import.meta.url).pathname.slice(1); 
   const filePath = path.join(__dirname, 'temp.pdf');
-  // const viewsPath = path.join(__dirname, '../views');
 
   try {
     const response = await axios({
@@ -212,14 +204,26 @@ router.post('/api/user/marks_verification', async (req, res) => {
   }
 });
 
-// router.get('/students', async (req, res) => {
-//   try {
-//     const students = await Student.find({});
-//     res.json(students);
-//   } catch (err) {
-//     console.error('Error fetching students:', err);
-//     res.status(500).json({ error: 'Error fetching students' });
-//   }
-// });
+router.get('/api/user/fetch_student', async (req, res) => {
+  try {
+    const students = await Student_mark.find({});
+    res.json(students);
+  } catch (err) {
+    console.error('Error fetching students:', err);
+    res.status(500).json({ error: 'Error fetching students' });
+  }
+});
 
-export default router;
+// Route to verify a student
+router.post('/api/user/verify_student/:id', async (req, res) => {
+  try {
+    const studentId = req.params.id;
+    await Student_mark.findByIdAndUpdate(studentId, { status: 'Verified' });
+    res.json({ message: 'Student verified successfully' });
+  } catch (err) {
+    console.error('Error verifying student:', err);
+    res.status(500).json({ error: 'Error verifying student' });
+  }
+});
+
+module.exports = router;

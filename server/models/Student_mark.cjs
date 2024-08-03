@@ -8,4 +8,4 @@ const studentSchema = new mongoose.Schema({
 
 const Student_mark = mongoose.model('Marks_verifications', studentSchema);
 
-export default Student_mark;
+module.exports = Student_mark;
