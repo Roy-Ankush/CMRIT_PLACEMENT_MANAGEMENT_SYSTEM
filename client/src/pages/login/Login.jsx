@@ -28,6 +28,7 @@ const Login = () => {
         // console.log("the role is",role)
         // console.log("the role fetched is",fetchrole)
         if (res.status===200) { 
+          localStorage.setItem('userEmail', email);  
           if(fetchrole==='spc' && role==='spc'){
             navigate('/spc');
             toast.success('SPC Login successful!', {
