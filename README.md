@@ -4,7 +4,19 @@ Anushka Tiwari
 Shubham Patel
 Ankit Raj
 
+# .Env config (Make file under server folder)
 
+PORT = "8000"
+
+STUDENT_PASSWORD = 12345
+STAFF_PASSWORD = 123
+
+JWT_SECRET = "krishnaayouaregreat"
+
+
+
+
+# steps for branch operations.
 git branch                   #Check current branch
 
 git switch -c <branch-name>    # Create and switch to new branch
