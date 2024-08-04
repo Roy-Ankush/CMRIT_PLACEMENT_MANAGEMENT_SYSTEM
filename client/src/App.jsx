@@ -17,6 +17,9 @@ import StudentList from './pages/fpc/StudentList'
 import KycData from './pages/fpc/KycData'
 import ForgotPass from './pages/forgot_password/ForgotPass'
 import ResetPassword from './pages/reset_pass/ResetPassword'
+import OfficerHome from './pages/officer/OfficerHome'
+import Drives from './pages/officer/Drives'
+import Officer from './pages/officer/Officer'
 
 function App() {
   return (
@@ -46,6 +49,11 @@ function App() {
           <Route path='/fpc/validate/forms' element={<Forms/>}></Route> 
           <Route path='/fpc/validate/forms/studentlist' element={<StudentList/>}></Route> 
           <Route path='/fpc/validate/forms/studentlist/kycdata' element={<KycData/>}></Route> 
+        </Route>
+
+        <Route path='/officer' element={<Officer/>}>
+          <Route path='/officer/home' element={<OfficerHome/>}></Route>
+          <Route path='/officer/drives' element={<Drives/>}></Route>
         </Route>
 
       </Routes>
