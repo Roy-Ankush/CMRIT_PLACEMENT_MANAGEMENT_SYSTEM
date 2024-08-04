@@ -110,7 +110,6 @@ import { Link, NavLink, Outlet } from 'react-router-dom';
 import './css/FPC.css';
 import { IoIosChatboxes } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
-import Navbar from '../../components/Navbar_fpc'
 const FPC = () => {
   const chats = [
     { id: 1, topic: "General", title: "KYC VALIDATION'2025", description: "Regarding KYC Validation for 2025 batch.", user: "@anti21is", date: "2 days ago" },
@@ -121,7 +120,6 @@ const FPC = () => {
 
   return (
     <>
-    {/* <Navbar/> */}
       <div className="row">
         <div className={`col-7 chat-card-container`}>
           <div className={`chat-card`}>
