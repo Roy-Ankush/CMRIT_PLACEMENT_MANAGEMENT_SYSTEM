@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar_fpc';
+import Navbar from '../../components/Navbar';
 import { Outlet, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -9,6 +9,13 @@ axios.defaults.withCredentials = true;
 function Fpc() {
   // const [isValid, setIsValid] = useState(false);
   // const navigate = useNavigate();
+
+    // Define tabs for Navbar
+    const tabs = [
+      { path: "fpc/chat", label: "Chats" },
+      { path: "fpc/validate", label: "Validate" },
+      { path: "fpc/verify", label: "Verify" },
+    ];
 
   // useEffect(() => {
   //   const verifyUser = async () => {
@@ -32,10 +39,10 @@ function Fpc() {
     <>
       {/* {isValid && ( */}
         <>
-          <Navbar />
+           <Navbar tabs={tabs} />
           <Outlet />
         </>
-       {/* )}  */}
+      {/* //  )}  */}
     </>
   );
 }

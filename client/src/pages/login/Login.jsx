@@ -37,14 +37,14 @@ const Login = () => {
             })
           }else if(fetchrole==='fpc' && role==='fpc'){
             // matych role input from fntend and bkend and role also to ..............
-            navigate('/fpc')
+            navigate('/fpc/chat')
             toast.success('FPC Login successful!', {
               position: 'top-center',
               autoClose: 2000,
               pauseOnHover: false
             })
           }else if(fetchrole==='student' && role==='student'){
-            navigate('/student');
+            navigate('/student/recentactivity');
             toast.success('Student Login successful!', {
               position: 'top-center',
               autoClose: 2000,
@@ -53,21 +53,21 @@ const Login = () => {
           }
           else if(fetchrole==='admin'){ // need to think on it
             if(role=="student"){
-              navigate('/student');
+              navigate('/student/recentactivity');
               toast.success('Student Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,
                 pauseOnHover: false
               })
             }else if(role==="fpc"){
-              navigate('/fpc');
+              navigate('/fpc/chat');
               toast.success('Fpc Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,
                 pauseOnHover: false
               })
             }else if(role==="spc"){
-              navigate('/fpc');
+              navigate('/fpc/chat');
               toast.success('Spc Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,

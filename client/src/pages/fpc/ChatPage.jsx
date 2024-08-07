@@ -3,7 +3,7 @@ import './css/FPC.css'
 import { FaUserCircle } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { IoMdSend } from "react-icons/io";
-import Navbar from '../../components/Navbar_fpc'
+// import Navbar from '../../components/Navbar_fpc'
 const ChatPage = () => {
   const { chatId } = useParams();
   const chats = [

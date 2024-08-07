@@ -1,91 +1,63 @@
-import React, { useEffect, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import style from "./Navbar.module.css";
+import React, { useState, useEffect } from "react";
+import styles from "./Navbar.module.css";
+import { NavLink } from "react-router-dom";
+import logo from '/cmr_logo.png'; // Import the logo
 
-function Navbar() {
-  const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState("recentactivity");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+const Navbar = ({ tabs }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // Effect to navigate to the default tab on component mount
-  useEffect(() => {
-    navigate(`/student/${selectedTab}`, { replace: true });
-  }, [navigate, selectedTab]);
-
-  // Function to handle tab selection
-  const handleTabChange = (tabName) => {
-    setSelectedTab(tabName);
+  const handleMenuToggle = () => {
+    setMenuOpen(!menuOpen);
   };
 
-  // Function to toggle the dropdown menu
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  // Function to handle clicking outside the dropdown to close it
   const handleClickOutside = (event) => {
-    if (isDropdownOpen && !event.target.closest(".profile")) {
-      setIsDropdownOpen(false);
+    if (menuOpen && !event.target.closest("nav")) {
+      setMenuOpen(false);
     }
   };
 
-  return (
-    <>
-      <div className={style.body}>
-  <div className={style.companyLogo}>
-    <img src="/cmr_logo.png" alt="Company Logo" className={style.logo} />
-  </div>
-  <div className={style.leftContent}>
-    <ul className={style.tabs}>
-      <li>
-        <NavLink
-          to="recentactivity"
-          className={style.navlink}
-          onClick={() => handleTabChange("recentactivity")}
-        >
-          Recent Activity
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="placementform"
-          className={style.navlink}
-          onClick={() => handleTabChange("placementform")}
-        >
-          Placement Form
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="tyl"
-          className={style.navlink}
-          onClick={() => handleTabChange("tyl")}
-        >
-          Tyl
-        </NavLink>
-      </li>
-    </ul>
-  </div>
-  <div className={style.profile} onClick={toggleDropdown}>
-    <div className={style.profileInfo}>
-      <span className={style.username}>Ankit </span>
-    </div>
-    <img src="/profile.png" alt="" className={style.profilelogo} />
-    {isDropdownOpen && (
-      <div className={style.dropdown_menu}>
-        <Link to="/profile" className={style.dropdown_item}>
-          Profile
-        </Link>
-        <Link to="/logout" className={style.dropdown_item}>
-          Logout
-        </Link>
-      </div>
-    )}
-  </div>
-</div>
+  useEffect(() => {
+    if (menuOpen) {
+      document.addEventListener("click", handleClickOutside);
+    } else {
+      document.removeEventListener("click", handleClickOutside);
+    }
 
-    </>
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [menuOpen]);
+
+  return (
+    <nav className={styles.nav}>
+      <div className={styles.left}>
+        <img src={logo} alt="Logo" className={styles.logo} />
+        <div className={styles.menu} onClick={handleMenuToggle}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <ul className={`${styles.navMenu} ${menuOpen ? styles.open : ""}`}>
+          {tabs.map((tab) => (
+            <li key={tab.path} className={styles.navMenuItem}>
+              <NavLink 
+                to={`/${tab.path}`} 
+                onClick={() => setMenuOpen(false)} 
+                className={({ isActive }) => isActive ? `${styles.navMenuLink} ${styles.active}` : styles.navMenuLink}
+              >
+                {tab.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <NavLink  
+        className={({ isActive }) => isActive ? `${styles.profile} ${styles.active}` : styles.profile}
+      >
+        Profile
+      </NavLink>
+    </nav>
   );
-}
+};
 
 export default Navbar;

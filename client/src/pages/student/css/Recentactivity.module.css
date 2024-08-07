@@ -4,12 +4,14 @@
   --background-color: #EDE8F5;
 }
 
+/* General styles */
 .recent-activity-tab {
   display: flex;
   gap: 20px;
   background-color: var(--background-color);
   padding: 20px;
   border-radius: 8px;
+  flex-wrap: wrap; /* Allows wrapping of sections in smaller screens */
 }
 
 .chatrooms-section {
@@ -100,4 +102,42 @@
 
 .news-details {
   color: var(--primary-color);
+}
+
+/* Responsive styles for mobile view */
+@media (max-width: 768px) {
+  .chatrooms-section {
+    max-width: 100%; /* Full width on smaller screens */
+    flex: 1; /* Adjust flex to occupy full width */
+  }
+
+  .bulletin-board {
+    max-width: 100%; /* Full width on smaller screens */
+    flex: 1; /* Adjust flex to occupy full width */
+  }
+
+  .recent-activity-tab {
+    flex-direction: column; /* Stack sections vertically */
+  }
+}
+
+@media (max-width: 480px) {
+  .news-image img {
+    width: 80px; /* Reduce image size on very small screens */
+  }
+
+  .chatroom-item {
+    flex-direction: column; /* Stack details and button vertically */
+    align-items: flex-start;
+  }
+
+  .chatroom-details {
+    padding-right: 0; /* Remove right padding on small screens */
+    margin-bottom: 10px; /* Add space between text and button */
+  }
+
+  .join-button {
+    width: 100%; /* Make button full width */
+    text-align: center; /* Center button text */
+  }
 }
