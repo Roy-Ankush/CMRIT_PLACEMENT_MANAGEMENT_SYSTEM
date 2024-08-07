@@ -1,0 +1,94 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.searchBar {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.tabContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tabButton {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.tabButton:hover {
+  background-color: #0056b3;
+}
+
+.addStudentForm, .editForm {
+  margin: 20px auto;
+  width: 80%;
+  max-width: 600px;
+}
+
+.formControl {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.addButton, .updateButton {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #28a745;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.addButton:hover, .updateButton:hover {
+  background-color: #218838;
+}
+
+.studentTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.studentTable th, .studentTable td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.studentTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.studentTable tr:hover {
+  background-color: #ddd;
+}

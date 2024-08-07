@@ -1,0 +1,53 @@
+.container {
+  padding: 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.batchGroups {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between batch groups */
+  justify-content: center; /* Center the batch groups */
+}
+
+.batchGroup {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.batchGroup h3 {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.branchList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.branchItem {
+  margin-bottom: 10px;
+}
+
+.branchItem button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.branchItem button:hover {
+  background-color: #0056b3;
+}
