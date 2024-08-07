@@ -13,7 +13,7 @@ import fpc from "../routes/fpc.js"
 // import Mark_verification from "../routes/Mark_verification.js";
 import forgotPassword from "../routes/forgotPassword.js"
 import resetPassword from "../routes/resetPassword.js"
-import drives from "../routes/drives.js"
+// import drives from "../routes/drives.js"
 // import checkRole from '../middleware/checkrole.js';
 
 const requireCjs = createRequire(import.meta.url);
@@ -57,7 +57,7 @@ app.use('/',fpc)
 app.use('/',forgotPassword)
 app.use('/',resetPassword)
 app.use('/',Mark_verification)
-app.use('/',drives)
+// app.use('/',drives)
 
 
 app.listen(port, () => {

@@ -1,28 +1,63 @@
 .App {
   font-family: 'Arial', sans-serif;
   text-align: center;
-  margin-top: 50px;
   background-color: #f0f4f8;
   color: #333;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-form {
+.formContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 80px; /* Adjust this value based on the height of your navbar */
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 20px;
+}
+
+.leftSide, .rightSide {
+  flex: 1;
+  margin: 10px;
+}
+
+.leftSide {
+  max-width: 45%;
+}
+
+.rightSide {
+  max-width: 45%;
+}
+
+h2 {
+  color: #333;
 }
 
 input[type="text"] {
   padding: 10px;
   border: 2px solid #3498db;
   border-radius: 4px;
-  width: 300px;
+  width: 100%;
   font-size: 16px;
-  margin: 10px 0; /* Add vertical space */
+  margin-bottom: 10px;
 }
 
 button {
@@ -34,7 +69,8 @@ button {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: 20px 0;
+  margin-top: 20px;
+  width: 100%;
 }
 
 button:hover {
@@ -51,16 +87,24 @@ button:disabled {
   margin-top: 20px;
 }
 
-.student-info {
-  margin-top: 20px;
-  background-color: #ffffff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 .spinner {
   margin: 20px auto;
   font-size: 24px;
   color: #3498db;
+}
+
+@media (max-width: 768px) {
+  .form {
+    flex-direction: column;
+  }
+
+  .leftSide, .rightSide {
+    max-width: 100%;
+    margin: 0;
+  }
+
+  /* Adjust the margin-top for mobile view to fit below the navbar */
+  .formContainer {
+    margin-top: 60px; /* Adjust this value if needed */
+  }
 }
