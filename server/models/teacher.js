@@ -2,7 +2,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
-import hashPassword from "../middleware/hashPassword.js";
 
 const teacher_schema = new mongoose.Schema({
     email: {
@@ -49,16 +48,27 @@ const teacher_schema = new mongoose.Schema({
 //     console.log(pass)
 //     if(this.isModified("password")){
 //         // const hashpassword=await bcrypt.hash(password,10);
-//         console.log(`password before hashing:- ${this.password}`)
+//         console.log(password before hashing:- ${this.password})
 //         this.password=await bcrypt.hash(this.password,10)
-//         console.log(`password after hashing:- ${this.password}`)
+//         console.log(password after hashing:- ${this.password})
 //         this.confirm_password=undefined;
 //     }
 //    next()
 // })
+teacher_schema.pre('save', async function (next) {
+    const user=this;
+    if(!user.isModified('password')) return next();
 
-teacher_schema.pre('save', hashPassword);
-//as we are defining class so make sure that first letter should be capital
+    try {
+ const salt = await bcrypt.genSalt(10)
+ const hashedPassword = await bcrypt.hash(this.password, salt)
+    user.password=hashedPassword;
+    next();
+} catch (error) {
+        return next(error)
+}
+})
+
 const teacher=new mongoose.model("teacher",teacher_schema);
 
 export default teacher;

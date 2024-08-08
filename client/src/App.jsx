@@ -16,10 +16,14 @@ import StudentList from './pages/fpc/StudentList'
 import KycData from './pages/fpc/KycData'
 import ForgotPass from './pages/forgot_password/ForgotPass'
 import ResetPassword from './pages/reset_pass/ResetPassword'
+import Admin from './pages/admin/Admin'
 // import OfficerHome from './pages/officer/OfficerHome'
 // import Drives from './pages/officer/Drives'
 // import Officer from './pages/officer/Officer'
-
+import Trainer from './pages/Trainer/Trainer';
+// import Batches from './pages/Trainer/Batches'; // If needed, uncomment and use
+import Studentsdata from './pages/Trainer/Studentslist'
+import Chat from './pages/Trainer/Chats'
 
 function App() {
   return (
@@ -31,7 +35,7 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/forgotPassword' element={<ForgotPass />}></Route>
         <Route path='/resetPassword/:id/:token' element={<ResetPassword />}></Route>
-
+        <Route path='/admin' element={<Admin/>}></Route>
 
         <Route path='/student' element={<Student />}>
           <Route path='/student/tyl' element={<Tyl />} />
@@ -51,6 +55,12 @@ function App() {
           <Route path='/fpc/validate/forms/studentlist/kycdata' element={<KycData/>}></Route> 
         </Route>
 
+
+        <Route path='/placementtrainer' element={<Trainer />}>
+           <Route path='/placementtrainer/chat' element={<Chat />} />
+           <Route path='/placementtrainer/update_mark' element={<Studentsdata />} />
+        </Route>
+        
       </Routes>
     </BrowserRouter>
   )

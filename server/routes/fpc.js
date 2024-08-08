@@ -1,11 +1,11 @@
 import express from 'express';
-import { verifyUser } from '../middleware/verifyUser.js';
 import higherOrderMiddleware from '../middleware/highermw.js';
 import checkRole from '../middleware/checkrole.js';
+import {verifyToken} from '../middleware/auth.js'
 
 const router = express.Router();
 
-router.get("/api/user/fpc",  async (req, res) => {
+router.get("/api/user/fpc",higherOrderMiddleware(verifyToken,checkRole),  async (req, res) => {
   try {
     return res.status(200).json({ valid: true });
   } catch (error) {
