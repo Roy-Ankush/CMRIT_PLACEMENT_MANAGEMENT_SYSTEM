@@ -30,6 +30,7 @@ const Navbar = ({ tabs, email }) => {
             autoClose: 2000,
             pauseOnHover: false
           })
+          location.reload();
           Navigate('/')
         }
       } catch (error) {
