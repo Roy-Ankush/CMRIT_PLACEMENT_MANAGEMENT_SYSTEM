@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./css/officer.css";
 import CommonChat from "../../components/CommonChat";
 import { IoChatbubblesSharp } from "react-icons/io5";
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const OfficerHome = () => {
   // State to manage form inputs and file
@@ -78,9 +81,20 @@ const OfficerHome = () => {
       // console.log('Response Body:', result);
 
       if (response.ok) {
-        console.log("Success:", result);
-      } else {
+        // console.log("Success:", result);
+        toast.success('Drive created', {
+          position: 'bottom-left',
+          autoClose: 2000,
+          pauseOnHover: false
+        })} 
+        else {
+          toast.error('Error creating Drive', {
+            position: 'bottom-left',
+            autoClose: 2000,
+            pauseOnHover: false
+          })
         console.error("Error:", result);
+
       }
     } catch (error) {
       console.error("Error:", error);
