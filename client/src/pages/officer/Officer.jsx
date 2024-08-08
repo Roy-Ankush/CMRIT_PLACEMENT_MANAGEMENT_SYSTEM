@@ -23,6 +23,7 @@ axios.defaults.withCredentials = true;
 function Officer() {
   const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
 
     // Define tabs for Navbar
     const tabs = [
@@ -33,7 +34,10 @@ function Officer() {
     const verifyUser = async () => {
       try {
         const res = await axios.get('http://localhost:8000/api/user/officer');
+        let email
         if (res.status === 200) {
+          email=res.data.email
+          setEmail(email);
           setIsValid(true);
           navigate('/officer/home');
         } else {
@@ -53,7 +57,7 @@ function Officer() {
     <>
       {isValid && (
         <>
-          <Navbar tabs={tabs} />
+           <Navbar tabs={tabs} email={email} />
           <Outlet />
         </>
       )}

@@ -40,7 +40,8 @@ router.post("/register", async (req, res) => {
       const newUser = new userModel({ email,password });
       const response = await newUser.save();
       const payload={
-        id:response.id
+        id:response.id,
+        email:response.email
       }
       const token=generateToken(payload);
       return res.status(201).json({response,token});

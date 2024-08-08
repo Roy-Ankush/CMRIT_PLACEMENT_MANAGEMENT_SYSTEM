@@ -6,9 +6,10 @@ import axios from 'axios';
 // Set axios defaults globally
 axios.defaults.withCredentials = true;
 
-function Fpc() {
+function Admin () {
   const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate();
+  const [email, setEmail] = useState('');
 
     // Define tabs for Navbar
     const tabs = [
@@ -18,7 +19,10 @@ function Fpc() {
     const verifyUser = async () => {
       try {
         const res = await axios.get('http://localhost:8000/api/user/admin');
+        let email
         if (res.status === 200) {
+          email=res.data.email
+          setEmail(email);
           setIsValid(true);
           navigate('/admin/home');
         } else {
@@ -38,7 +42,7 @@ function Fpc() {
     <>
       {isValid && (
         <>
-          <Navbar tabs={tabs} />
+          <Navbar tabs={tabs} email={email} />
           <Outlet />
         </>
       )}
@@ -46,4 +50,4 @@ function Fpc() {
   );
 }
 
-export default Fpc;
+export default Admin;
