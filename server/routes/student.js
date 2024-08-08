@@ -1,12 +1,13 @@
 import express from 'express'
-import  {verifyUser}  from '../middleware/verifyUser.js'
+import { verifyToken } from '../middleware/auth.js';
 const router=express.Router()
 
 
-router.get("/api/user/student",verifyUser, async (req, res) => {
+router.get("/api/user/student", verifyToken, async (req, res) => {
     try {
         return res.status(200).json({valid:true})
     } catch (error) {
+        console.log("error in student page")
         console.log(error)
     }
   });

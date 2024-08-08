@@ -12,15 +12,15 @@ function Fpc() {
 
     // Define tabs for Navbar
     const tabs = [
-      { path: "fpc/verify", label: "verify" },
+      { path: "admin/home", label: "Home" },
     ];
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/user/fpc');
+        const res = await axios.get('http://localhost:8000/api/user/admin');
         if (res.status === 200) {
           setIsValid(true);
-          navigate('/fpc/verify');
+          navigate('/admin/home');
         } else {
           navigate('/');
         }

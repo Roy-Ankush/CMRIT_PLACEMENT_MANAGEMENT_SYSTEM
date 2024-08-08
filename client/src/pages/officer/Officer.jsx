@@ -1,3 +1,17 @@
+// import React from 'react';
+// import {Outlet} from 'react-router-dom';
+
+// const Officer = () => {
+//   return (
+//     <div>
+//       <Outlet/>
+//     </div>
+//   )
+// }
+
+// export default Officer
+
+
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -6,21 +20,22 @@ import axios from 'axios';
 // Set axios defaults globally
 axios.defaults.withCredentials = true;
 
-function Fpc() {
+function Officer() {
   const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate();
 
     // Define tabs for Navbar
     const tabs = [
-      { path: "fpc/verify", label: "verify" },
+      { path: "officer/home", label: "Home" },
+      { path: "officer/drives", label: "Drives" },
     ];
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/api/user/fpc');
+        const res = await axios.get('http://localhost:8000/api/user/officer');
         if (res.status === 200) {
           setIsValid(true);
-          navigate('/fpc/verify');
+          navigate('/officer/home');
         } else {
           navigate('/');
         }
@@ -46,4 +61,4 @@ function Fpc() {
   );
 }
 
-export default Fpc;
+export default Officer;

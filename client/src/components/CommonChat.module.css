@@ -1,0 +1,84 @@
+
+.chatSpace {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 32rem; /* Adjust height as needed */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fff;
+}
+
+.chatBox {
+  flex-grow: 1;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between messages */
+}
+
+.message {
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  border-top-right-radius: 0px;
+  padding: 8px;
+  max-width: 60%; /* Limit message width */
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  display: inline-block;
+  position: relative;
+}
+
+.message.user {
+  background-color: #007bff;
+  color: #fff;
+  align-self: flex-end; /* Align user messages to the right */
+}
+
+.message.other {
+  background-color: #e0e0e0;
+  align-self: flex-start; /* Align other messages to the left */
+}
+
+.messageBoxContainer {
+  position: relative;
+}
+
+.messageBox {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 40px; /* Space for the send button */
+}
+.messageSender{
+  font-size: 14px;
+}
+.messageTime{
+  font-size: 10px;
+}
+
+.chatSendButton {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chatSendButton:hover {
+  background: none; /* Ensure no background on hover */
+}
+

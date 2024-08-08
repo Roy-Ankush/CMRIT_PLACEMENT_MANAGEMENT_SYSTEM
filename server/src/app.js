@@ -10,17 +10,33 @@ import register from "../routes/register.js";
 import login from "../routes/login.js";
 import student from '../routes/student.js';
 import fpc from "../routes/fpc.js"
-// import Mark_verification from "../routes/Mark_verification.js";
 import forgotPassword from "../routes/forgotPassword.js"
 import resetPassword from "../routes/resetPassword.js"
-// import drives from "../routes/drives.js"
 // import checkRole from '../middleware/checkrole.js';
+import trainer from '../routes/trainer.js';
+import studenttyldataroutes from '../routes/studenttyldataroute.js';
+import officer from "../routes/officer.js"
+import drives from "../routes/drives.js"
+import setupSocketEvents from '../routes/socketHandlers.js';
+import http from 'http';
+import { Server as SocketIo } from 'socket.io';
+import admin from '../routes/admin.js';
+const app = express();
+const server=http.createServer(app); 
+
+
+const io = new SocketIo(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+  }
+});
+
+setupSocketEvents(io);
 
 const requireCjs = createRequire(import.meta.url);
 const Mark_verification = requireCjs('../routes/Mark_verification.cjs');
 
-
-const app = express();
 console.log(process.env.PORT)
 const port = process.env.PORT;
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -29,10 +45,9 @@ app.use(cookieParser())
 app.use(cors({
   origin:["http://localhost:5173"],
   credentials:true,
-  methods:"GET,PUT,POST,DELETE"
+  methods:"GET,PUT,POST,DELETE,PATCH"
 }
 ))
-
 
 //Database connectivity
 const connectionString = "mongodb+srv://kumarankitverma5:test123@cluster0.bvgikdc.mongodb.net/CMR?retryWrites=true&w=majority&appName=Cluster0";
@@ -48,18 +63,23 @@ const connect_Database = async () => {
 }
 connect_Database()
 
-
-
-app.use('/',register)
-app.use('/',login)
+  
+app.use('/api/user',register)
+app.use('/api/user',login)
 app.use('/',student)
 app.use('/',fpc)
 app.use('/',forgotPassword)
 app.use('/',resetPassword)
 app.use('/',Mark_verification)
-// app.use('/',drives)
+app.use('/', trainer);
+app.use('/', studenttyldataroutes);
+app.use('/',drives)
+app.use('/',officer)
+app.use('/',admin)
+// app.listen(port, () => {
+//     console.log(`server is listening on port ${port}`)
+//   })
 
-
-app.listen(port, () => {
-    console.log(`server is listening on port ${port}`)
-  })
+server.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});

@@ -60,7 +60,7 @@ input[type="text"] {
   margin-bottom: 10px;
 }
 
-button {
+.button1 {
   padding: 10px 20px;
   border: none;
   border-radius: 4px;

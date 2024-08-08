@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import { NavLink } from "react-router-dom";
 import logo from '/cmr_logo.png'; // Import the logo
+import { FaUser } from "react-icons/fa";
 
 const Navbar = ({ tabs }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -51,10 +52,9 @@ const Navbar = ({ tabs }) => {
           ))}
         </ul>
       </div>
-      <NavLink  
-        className={({ isActive }) => isActive ? `${styles.profile} ${styles.active}` : styles.profile}
-      >
-        Profile
+      <NavLink className="bg-[##0f172a]">
+      <FaUser  className="h-8 w-8 bg-black rounded-full mr-5"
+        style={{ color: 'white' }}  />
       </NavLink>
     </nav>
   );

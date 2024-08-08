@@ -149,7 +149,7 @@ function App() {
             />
           </div>
 
-          <button type="submit" disabled={loading}>
+          <button className={styles.button1} type="submit" disabled={loading}>
             {loading ? <FontAwesomeIcon icon={faSpinner} spin /> : 'Submit'}
           </button>
 

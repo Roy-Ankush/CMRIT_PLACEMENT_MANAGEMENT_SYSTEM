@@ -12,7 +12,6 @@ function Verify() {
   const fetchStudents = async () => {
     setStudentsLoading(true);
     setStudentsError('');
-
     try {
       const response = await axios.get('http://localhost:8000/api/user/fetch_student');
       setStudents(response.data);

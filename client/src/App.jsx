@@ -6,21 +6,19 @@ import Student from './pages/student/Student'
 import Tyl from './pages/student/Tyl'
 import PlacementForm from './pages/student/PlacementForm'
 import RecentActivity from './pages/student/RecentActivity'
-import Chats from './pages/fpc/Chats'
 import Verify from './pages/fpc/Verify'
-import ChatPage from './pages/fpc/ChatPage'
 import Fpc from './pages/fpc/Fpc'
-import Validate from './pages/fpc/Validate'
-import Forms from './pages/fpc/Forms'
-import StudentList from './pages/fpc/StudentList'
-import KycData from './pages/fpc/KycData'
 import ForgotPass from './pages/forgot_password/ForgotPass'
 import ResetPassword from './pages/reset_pass/ResetPassword'
-// import OfficerHome from './pages/officer/OfficerHome'
-// import Drives from './pages/officer/Drives'
-// import Officer from './pages/officer/Officer'
-
-
+import Admin from './pages/admin/Admin'
+import OfficerHome from './pages/officer/OfficerHome'
+import Drives from './pages/officer/Drives'
+import Officer from './pages/officer/Officer'
+import Trainer from './pages/Trainer/Trainer';
+// import Batches from './pages/Trainer/Batches'; // If needed, uncomment and use
+import Studentsdata from './pages/Trainer/Studentslist'
+import Chat from './pages/Trainer/Chats'
+import Adminhome from './pages/admin/Adminhome'
 function App() {
   return (
     <BrowserRouter>
@@ -31,7 +29,7 @@ function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/forgotPassword' element={<ForgotPass />}></Route>
         <Route path='/resetPassword/:id/:token' element={<ResetPassword />}></Route>
-
+        
 
         <Route path='/student' element={<Student />}>
           <Route path='/student/tyl' element={<Tyl />} />
@@ -41,14 +39,20 @@ function App() {
 
         <Route path='/fpc' element={<Fpc/>}>
           <Route path='/fpc/verify' element={<Verify/>}></Route> 
+        </Route>
 
-          <Route path='/fpc/chat' element={<Chats/>}></Route> 
-          <Route path='/fpc/chat/:chatId' element={<ChatPage/>} />
+        <Route path='/officer' element={<Officer/>}>
+          <Route path='/officer/home' element={<OfficerHome/>}></Route>
+          <Route path='/officer/drives' element={<Drives/>}></Route>
+        </Route>
 
-          <Route path='/fpc/validate' element={<Validate/>}></Route> 
-          <Route path='/fpc/validate/forms' element={<Forms/>}></Route> 
-          <Route path='/fpc/validate/forms/studentlist' element={<StudentList/>}></Route> 
-          <Route path='/fpc/validate/forms/studentlist/kycdata' element={<KycData/>}></Route> 
+        <Route path='/placementtrainer' element={<Trainer />}>
+           <Route path='/placementtrainer/chat' element={<Chat />} />
+           <Route path='/placementtrainer/update_mark' element={<Studentsdata />} />
+        </Route>
+        
+        <Route path='/admin' element={<Admin/>}>
+          <Route path='/admin/home' element={<Adminhome/>}></Route>
         </Route>
 
       </Routes>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { NavLink, useNavigate } from 'react-router-dom';
 import styles from '../register/Register.module.css';
-import { toast } from 'react-toastify';
+import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -29,15 +29,15 @@ const Login = () => {
         // console.log("the role fetched is",fetchrole)
         if (res.status===200) { 
           if(fetchrole==='spc' && role==='spc'){
-            navigate('/spc');
+            navigate('/fpc/verify');
             toast.success('SPC Login successful!', {
               position: 'top-center',
               autoClose: 2000,
               pauseOnHover: false
             })
           }else if(fetchrole==='fpc' && role==='fpc'){
-            // matych role input from fntend and bkend and role also to ..............
-            navigate('/fpc/chat')
+            // match role input from fntend and bkend and role also to ..............
+            navigate('/fpc/verify')
             toast.success('FPC Login successful!', {
               position: 'top-center',
               autoClose: 2000,
@@ -60,43 +60,51 @@ const Login = () => {
                 pauseOnHover: false
               })
             }else if(role==="fpc"){
-              navigate('/fpc/chat');
+              navigate('/fpc/verify');
               toast.success('Fpc Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,
                 pauseOnHover: false
               })
             }else if(role==="spc"){
-              navigate('/fpc/chat');
+              navigate('/fpc/verify');
               toast.success('Spc Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,
                 pauseOnHover: false
               })
             }else if(role==="placementtrainer"){
-              navigate('/placementtrainer');
+              navigate('/placementtrainer/update_mark');
               toast.success('PlacementTrainer Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,
                 pauseOnHover: false
               })
             }else if(role==="placementofficer"){
-              navigate('/placementofficer');
+              navigate('/officer/home');
               toast.success('PlacementOfficer Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,
                 pauseOnHover: false
               })
             }
+            else if(role==="admin"){
+              navigate('/admin/home');
+              toast.success('Admin Login successful!', {
+                position: 'top-center',
+                autoClose: 2000,
+                pauseOnHover: false
+              })
+            }
           }else if(fetchrole==='placementtrainer' && role==='placementtrainer'){
-            navigate('/placementtrainer');
+            navigate('/placementtrainer/update_mark');
             toast.success('Placemenetrainer Login successful!', {
               position: 'top-center',
               autoClose: 2000,
               pauseOnHover: false
             })
           }else if(fetchrole==='placementofficer' && role==='placementofficer'){
-            navigate('/placementofficer');
+            navigate('/officer/home');
             toast.success('Placementofficer Login successful!', {
               position: 'top-center',
               autoClose: 2000,
@@ -114,7 +122,7 @@ const Login = () => {
     } catch (error) {
         if(error.response.status===422){
           toast.error('Inavlid Role!', {
-            position: 'top-center',
+            position: 'top-left',
             autoClose: 2000,
             pauseOnHover: false
           })

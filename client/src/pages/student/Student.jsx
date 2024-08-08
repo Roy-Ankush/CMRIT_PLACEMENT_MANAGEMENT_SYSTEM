@@ -1,12 +1,13 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-import Navbar from '../../components/Navbar';
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Outlet, useNavigate } from 'react-router-dom'
+import Navbar from '../../components/Navbar'
 
-const Student = () => {
+function Student() {
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
+  
   // Define tabs for Navbar
   const tabs = [
     { path: "student/recentactivity", label: "Recent Activity" },
@@ -14,9 +15,13 @@ const Student = () => {
     { path: "student/tyl", label: "Tyl" },
   ];
 
+
   useEffect(() => {
-    axios.get('http://localhost:8000/api/user/student')
-      .then(res => {
+    const verifyUser = async () => {
+      try {
+        const res = await axios.get('http://localhost:8000/api/user/student');
+        // I am returing valid true as a json object from server
+        // if(res.status==200){
         if (res.data.valid) {
           console.log("yes verified");
           console.log("then block of student page");
@@ -24,19 +29,23 @@ const Student = () => {
         } else {
           navigate('/');
         }
-      })
-      .catch((err) => {
+      } catch (err) {
+        console.log(err.response.data)
+        console.log(err.response.status)
+        console.log(err.response.header)
         console.log("inside student page of catch block");
         console.log(err);
-      });
-  }, [navigate]);
-
+        navigate('/')
+      }
+    };
+    verifyUser();
+  }, [navigate])
   return (
     <>
       <Navbar tabs={tabs} />
-      <Outlet />
+      <Outlet/>
     </>
-  );
+  )
 }
 
-export default Student;
+export default Student
