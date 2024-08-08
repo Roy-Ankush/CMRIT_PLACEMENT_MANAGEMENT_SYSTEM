@@ -54,8 +54,10 @@ router.post('/login', async (req, res) => {
     if (useremail) {
       const userpassword = useremail.password
       const payload={
-        id:useremail.id
+        id:useremail.id,
+        email:useremail.email,
       }
+      // console.log(payload);
       if (!userpassword) {
         return res.status(400)
       }

@@ -1,39 +1,66 @@
 .container {
-  display: flex;
-  justify-content: center; /* Centers items horizontally */
-  align-items: center; /* Centers items vertically */
-  height: 100vh; /* Full viewport height */
-  background-color: #f0f0f0; /* Example background color */
+  background-color: #eaf4ff; /* Very light blue background */
+  min-height: 100vh; /* Ensure the background covers the viewport height */
+  padding: 20px;
 }
 
 .markscards {
-margin-top:80px ;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around; /* Centers items with equal space around */
-  gap: 35px;
-  padding: 18px; /* Adds padding around the grid */
+  justify-content: space-around;
+  gap: 20px;
 }
 
 .card {
-  background-color: #ede8fe; /* Use specified color */
-  width: calc(33.33% - 35px); /* Calculate width for 3 cards with gap */
-  min-width: 300px; /* Minimum width for each card */
-  height: 170px;
-  padding: 10px;
+  background-color: #ffffff; /* White background for cards */
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-  text-align: center;
-  color: black; /* Ensures the text is visible against the card background */
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start; /* Align items to the top */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: calc(33% - 40px); /* Adjust width to fit 3 cards per row with gap */
+  box-sizing: border-box;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
 }
 
 .card h3 {
-  margin-top: 5px; /* Adjust to move the title higher */
+  color: #0033cc; /* Blue color for titles */
+  margin-bottom: 10px;
+  font-size: 1.25rem; /* Slightly larger title font */
 }
 
 .card p {
-  margin-top: 1px; /* Adjust to move the content higher */
+  color: #333333; /* Dark grey color for text */
+  margin: 5px 0;
+  font-size: 1rem; /* Ensure text is readable */
+}
+
+.card.pass {
+  border-left: 5px solid #00bfae; /* Teal color for 'Pass' */
+}
+
+.card.fail {
+  border-left: 5px solid #ff4c4c; /* Red color for 'Fail' */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.status {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+@media (max-width: 1200px) {
+  .card {
+    width: calc(50% - 40px); /* Two cards per row on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: calc(100% - 40px); /* One card per row on small screens */
+  }
 }

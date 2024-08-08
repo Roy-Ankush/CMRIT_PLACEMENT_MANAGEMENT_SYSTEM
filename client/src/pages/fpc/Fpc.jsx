@@ -9,7 +9,7 @@ axios.defaults.withCredentials = true;
 function Fpc() {
   const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate();
-
+  const [email, setEmail] = useState('');
     // Define tabs for Navbar
     const tabs = [
       { path: "fpc/verify", label: "verify" },
@@ -18,7 +18,10 @@ function Fpc() {
     const verifyUser = async () => {
       try {
         const res = await axios.get('http://localhost:8000/api/user/fpc');
+        let email
         if (res.status === 200) {
+          email=res.data.email
+          setEmail(email);
           setIsValid(true);
           navigate('/fpc/verify');
         } else {
@@ -38,7 +41,7 @@ function Fpc() {
     <>
       {isValid && (
         <>
-          <Navbar tabs={tabs} />
+          <Navbar tabs={tabs} email={email}/>
           <Outlet />
         </>
       )}

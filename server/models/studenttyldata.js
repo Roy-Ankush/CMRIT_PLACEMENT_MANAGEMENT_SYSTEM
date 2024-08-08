@@ -1,4 +1,3 @@
-// models/studenttyldata.js
 import mongoose from 'mongoose';
 
 const studenttyldataSchema = new mongoose.Schema({
@@ -18,7 +17,7 @@ const studenttyldataSchema = new mongoose.Schema({
   aptitude: { a1: String, a2: String, a3: String },
   softSkills: { ss1: String, ss2: String, ss3: String },
   language: { l1: String, l2: String, l3: String, l4: String, l5: String },
-  fsd: String, // Updated to String
+  fsd: String, 
 });
 
 const StudentTyldata = mongoose.model('StudentTyldata', studenttyldataSchema);

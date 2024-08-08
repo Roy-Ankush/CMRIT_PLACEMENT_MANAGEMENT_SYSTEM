@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./css/Studentslist.module.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Studentslist() {
   const [students, setStudents] = useState([]);
@@ -127,7 +129,11 @@ function Studentslist() {
         `http://localhost:8000/api/user/students/${selectedStudent._id}`,
         selectedStudent
       );
-      alert("Student details updated successfully");
+      toast.success('Student details updated successfully', {
+        position: 'top-center',
+        autoClose: 1500,
+        pauseOnHover: false
+      })
       setEditModalOpen(false);
       const response = await axios.get(
         "http://localhost:8000/api/user/students"
@@ -144,7 +150,11 @@ function Studentslist() {
         `http://localhost:8000/api/user/students/${selectedStudent._id}/marks`,
         marks
       );
-      alert("Marks updated successfully");
+      toast.success('Marks updated successfully', {
+        position: 'top-center',
+        autoClose: 2000,
+        pauseOnHover: false
+      })
       setMarksModalOpen(false);
       const response = await axios.get(
         "http://localhost:8000/api/user/students"
@@ -158,7 +168,12 @@ function Studentslist() {
   const handleAddStudent = async () => {
     try {
       await axios.post("http://localhost:8000/api/user/students", newStudent);
-      alert("Student added successfully");
+      
+      toast.success('Student added successfully', {
+        position: 'top-center',
+        autoClose: 2000,
+        pauseOnHover: false
+      })
       setAddModalOpen(false);
       const response = await axios.get(
         "http://localhost:8000/api/user/students"

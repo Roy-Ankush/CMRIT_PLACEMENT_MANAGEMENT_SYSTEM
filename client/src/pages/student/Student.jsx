@@ -6,7 +6,7 @@ import Navbar from '../../components/Navbar'
 function Student() {
   const navigate = useNavigate();
   axios.defaults.withCredentials = true;
-
+  const [email, setEmail] = useState('');
   
   // Define tabs for Navbar
   const tabs = [
@@ -22,18 +22,14 @@ function Student() {
         const res = await axios.get('http://localhost:8000/api/user/student');
         // I am returing valid true as a json object from server
         // if(res.status==200){
+        let email;
         if (res.data.valid) {
-          console.log("yes verified");
-          console.log("then block of student page");
-          console.log(res);
+          email = res.data.email;
+          setEmail(email);
         } else {
           navigate('/');
         }
       } catch (err) {
-        console.log(err.response.data)
-        console.log(err.response.status)
-        console.log(err.response.header)
-        console.log("inside student page of catch block");
         console.log(err);
         navigate('/')
       }
@@ -42,7 +38,7 @@ function Student() {
   }, [navigate])
   return (
     <>
-      <Navbar tabs={tabs} />
+       <Navbar tabs={tabs} email={email} />
       <Outlet/>
     </>
   )

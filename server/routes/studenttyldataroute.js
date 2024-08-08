@@ -1,6 +1,7 @@
 // routes/students.js
 import express from 'express';
 import StudentTyldata from '../models/studenttyldata.js';
+import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -69,7 +70,16 @@ router.patch('/api/user/students/:id/marks', async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 });
-
+//get student data  , for displaying in student tyl tab
+router.get('/api/studentdata',verifyToken, async (req, res) => {
+  try {
+    const email = req.user.email;
+    const studentData = await StudentTyldata.findOne({ email: email }); // You can modify this to find a specific student
+    res.json(studentData);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 
 
 export default router;
