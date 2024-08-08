@@ -1,0 +1,120 @@
+/* .drive-header{
+    font-size: 20px;    
+}
+.drive-card .card-text{
+    margin-bottom: 0.5rem !important;
+} */
+
+.form-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.form-container form {
+  border: 1px solid rgb(222, 219, 219);
+  display: block; /* Ensure form displays as a block-level element */
+  background-color: #f4f4f4;
+  margin-top: 0.3rem;
+  height: 36.5rem;
+}
+
+h5 {
+  margin-bottom: 10px;
+  text-align: left; /* Align heading text to the left */
+}
+
+hr {
+  margin: 10px 0; /* Add margin to the top and bottom of the horizontal line */
+  color: #000; /* Set color to ensure visibility */
+  border: none; /* Remove default border style */
+  border-top: 1px solid #000; /* Add a solid top border */
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.form-label {
+  width: 200px; /* Adjust as needed */
+  margin-right: 10px;
+  font-weight: bold;
+  text-align: left; /* Align label text to the left */
+}
+
+.form-control {
+  flex: 1; /* Ensure the input fields take up the remaining space */
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea.form-control {
+  resize: none;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-light {
+  background-color: #f8f9fa;
+  color: #000;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-light:hover {
+  background-color: #e2e6ea;
+}
+
+
+
+.chat-container {
+    height: 36.7rem;
+    border: 1px solid #ccc;
+    margin-top: 10rem;
+    border-radius: 8px;
+    padding: 1.2rem;
+    background-color: #f9f9f9;
+  }
+
+  .chat-title {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    margin-bottom: 10px;
+  }
+
+  .chat-title .chat-icon{
+    font-size: 30px;
+  }
+  .chat-title h5 {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0; /* Remove default margin from the heading */
+  }

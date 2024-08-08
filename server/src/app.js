@@ -10,10 +10,14 @@ import register from "../routes/register.js";
 import login from "../routes/login.js";
 import student from '../routes/student.js';
 import fpc from "../routes/fpc.js"
+import officer from "../routes/officer.js"
 // import Mark_verification from "../routes/Mark_verification.js";
 import forgotPassword from "../routes/forgotPassword.js"
 import resetPassword from "../routes/resetPassword.js"
 import drives from "../routes/drives.js"
+import setupSocketEvents from '../routes/socketHandlers.js';
+import http from 'http';
+import { Server as SocketIo } from 'socket.io';
 // import checkRole from '../middleware/checkrole.js';
 
 const requireCjs = createRequire(import.meta.url);
@@ -21,8 +25,22 @@ const Mark_verification = requireCjs('../routes/Mark_verification.cjs');
 
 
 const app = express();
+const server=http.createServer(app); 
+
+
+const io = new SocketIo(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+  }
+});
+
+setupSocketEvents(io);
+
 console.log(process.env.PORT)
 const port = process.env.PORT;
+
+
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cookieParser())
@@ -46,7 +64,7 @@ const connect_Database = async () => {
     process.exit(1);
   }
 }
-connect_Database()
+connect_Database();
 
 
 
@@ -54,12 +72,29 @@ app.use('/',register)
 app.use('/',login)
 app.use('/',student)
 app.use('/',fpc)
+app.use('/',officer)
 app.use('/',forgotPassword)
 app.use('/',resetPassword)
 app.use('/',Mark_verification)
 app.use('/',drives)
 
 
-app.listen(port, () => {
-    console.log(`server is listening on port ${port}`)
-  })
+  // io.on('connection', (socket) => {
+  //   console.log('a user connected');
+    
+  //   socket.on('sendMessage', (message) => {
+  //     io.emit('receiveMessage', message); // Send the message to all clients
+  //   });
+    
+  //   socket.on('disconnect', () => {
+  //     console.log('user disconnected');
+  //   });
+  // });
+
+server.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});
+
+// app.listen(port, () => {
+//     console.log(`server is listening on port ${port}`)
+//   })

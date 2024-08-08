@@ -81,7 +81,7 @@ const Login = () => {
                 pauseOnHover: false
               })
             }else if(role==="placementofficer"){
-              navigate('/placementofficer');
+              navigate('/officer');
               toast.success('PlacementOfficer Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,
@@ -96,7 +96,7 @@ const Login = () => {
               pauseOnHover: false
             })
           }else if(fetchrole==='placementofficer' && role==='placementofficer'){
-            navigate('/placementofficer');
+            navigate('/officer');
             toast.success('Placementofficer Login successful!', {
               position: 'top-center',
               autoClose: 2000,

@@ -68,6 +68,7 @@ function App() {
     <div className={styles.App}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <input
+          className={styles.placement-form-data}
           type="text"
           name="resumeLink"
           placeholder="Resume Link"
@@ -76,6 +77,7 @@ function App() {
           aria-label="Resume Link"
         />
         <input
+          className={styles.placement-form-data}
           type="text"
           name="videoResumeLink"
           placeholder="Video Resume Link"
@@ -84,6 +86,7 @@ function App() {
           aria-label="Video Resume Link"
         />
         <input
+          className={styles.placement-form-data}
           type="text"
           name="tenthMarksLink"
           placeholder="10th Marks Link"
@@ -92,6 +95,7 @@ function App() {
           aria-label="10th Marks Link"
         />
         <input
+          className={styles.placement-form-data}
           type="text"
           name="twelfthMarksLink"
           placeholder="12th Marks Link"
@@ -100,6 +104,7 @@ function App() {
           aria-label="12th Marks Link"
         />
         <input
+          className={styles.placement-form-data}
           type="text"
           name="ugMarksLink"
           placeholder="UG Marks Link"
@@ -108,6 +113,7 @@ function App() {
           aria-label="UG Marks Link"
         />
         <input
+          className={styles.placement-form-data}
           type="text"
           name="panLink"
           placeholder="PAN Link"
@@ -116,6 +122,7 @@ function App() {
           aria-label="PAN Link"
         />
         <input
+          className={styles.placement-form-data}
           type="text"
           name="aadharLink"
           placeholder="Aadhar Link"
@@ -124,6 +131,7 @@ function App() {
           aria-label="Aadhar Link"
         />
         <input
+          className={styles.placement-form-data}
           type="text"
           name="passportLink"
           placeholder="Passport Link (optional)"
@@ -132,6 +140,7 @@ function App() {
           aria-label="Passport Link (optional)"
         />
         <input
+          className={styles.placement-form-data}
           type="text"
           name="photoLink"
           placeholder="Photo Link"
@@ -140,6 +149,7 @@ function App() {
           aria-label="Photo Link"
         />
         <input
+          className={styles.placement-form-data}
           type="text"
           name="collegeIdLink"
           placeholder="College ID Link"

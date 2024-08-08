@@ -37,7 +37,7 @@ export const verifyUser = (req, res, next) => {
         return res.json({ valid: false, message: "Invalid Token" });
       } else {
         req.email = decoded.email
-        req.user = decoded; // Attach the decoded user information to req.user
+        req.user = email; // Attach the decoded user information to req.user
         console.log('User verified:', req.user);
         next();
       }

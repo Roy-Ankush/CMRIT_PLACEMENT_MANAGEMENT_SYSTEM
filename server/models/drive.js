@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const driveSchema = new mongoose.Schema({
   topic: {
     type: String,
-    required: true,
+    default:"Drive",
   },
   batch: {
     type: String,
@@ -17,19 +17,19 @@ const driveSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  file: {
-    data: {
-      type: Buffer, // Storing binary data
-    },
-    contentType: {
-      type: String,
-      required: true,
-      enum: ['image/jpeg', 'image/png', 'application/pdf'], // Allowed MIME types
-    },
-    fileName: {
-      type: String,
-      required: true,
-    },
+  files: [
+    {
+      data: Buffer, // Storing binary data
+      contentType: {
+        type: String,
+        enum: ['image/jpeg', 'image/png', 'application/pdf'], // Allowed MIME types
+      },
+      fileName: String,
+    }
+  ],
+  registrationLink:{
+    type:String,
+    required:true,
   },
   createdAt: {
     type: Date,

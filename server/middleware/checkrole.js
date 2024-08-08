@@ -2,16 +2,16 @@ import User_role from '../models/role.js';
 
 const checkRole = async (req, res, next) => {
   console.log('Checking role for user:', req.user);
-  const { role } = req.user; // Assuming user object is attached to req.user in authentication middleware
+  const {email} = req.user; // Assuming user object is attached to req.user in authentication middleware
 
-  if (role === 'student') {
-    console.log("pass1")
-    return next();
-  }
+  // if (role === 'student') {
+  //   console.log("pass1")
+  //   return next();
+  // }
 
   try {
     console.log(req.user.email)
-    const user = await User_role.findOne({ email: req.user.email});
+    const user = await User_role.findOne(email);
     console.log("user are the:",user)
     if (user) {
         console.log("pass2")
