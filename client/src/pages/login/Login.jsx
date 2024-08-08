@@ -6,8 +6,6 @@ import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-
-
 const Login = () => {
   // const loginWithGoogle = () => {
   //   window.open('http://localhost:8000/auth/google/callback', '_self');
@@ -31,7 +29,7 @@ const Login = () => {
         // console.log("the role fetched is",fetchrole)
         if (res.status===200) { 
           if(fetchrole==='spc' && role==='spc'){
-            navigate('/fpc/chat');
+            navigate('/fpc/verify');
             toast.success('SPC Login successful!', {
               position: 'top-center',
               autoClose: 2000,
@@ -39,7 +37,7 @@ const Login = () => {
             })
           }else if(fetchrole==='fpc' && role==='fpc'){
             // match role input from fntend and bkend and role also to ..............
-            navigate('/fpc/chat')
+            navigate('/fpc/verify')
             toast.success('FPC Login successful!', {
               position: 'top-center',
               autoClose: 2000,
@@ -62,14 +60,14 @@ const Login = () => {
                 pauseOnHover: false
               })
             }else if(role==="fpc"){
-              navigate('/fpc/chat');
+              navigate('/fpc/verify');
               toast.success('Fpc Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,
                 pauseOnHover: false
               })
             }else if(role==="spc"){
-              navigate('/fpc/chat');
+              navigate('/fpc/verify');
               toast.success('Spc Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,
@@ -83,7 +81,7 @@ const Login = () => {
                 pauseOnHover: false
               })
             }else if(role==="placementofficer"){
-              navigate('/placementofficer');
+              navigate('/officer/home');
               toast.success('PlacementOfficer Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,
@@ -91,7 +89,7 @@ const Login = () => {
               })
             }
             else if(role==="admin"){
-              navigate('/admin');
+              navigate('/admin/home');
               toast.success('Admin Login successful!', {
                 position: 'top-center',
                 autoClose: 2000,
@@ -106,7 +104,7 @@ const Login = () => {
               pauseOnHover: false
             })
           }else if(fetchrole==='placementofficer' && role==='placementofficer'){
-            navigate('/placementofficer');
+            navigate('/officer/home');
             toast.success('Placementofficer Login successful!', {
               position: 'top-center',
               autoClose: 2000,

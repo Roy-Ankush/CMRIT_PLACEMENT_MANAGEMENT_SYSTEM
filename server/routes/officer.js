@@ -5,7 +5,7 @@ import {verifyToken} from '../middleware/auth.js'
 
 const router = express.Router();
 
-router.get("/api/user/placementtrainer",higherOrderMiddleware(verifyToken,checkRole),  async (req, res) => {
+router.get("/api/user/officer",higherOrderMiddleware(verifyToken,checkRole), async (req, res) => {
   try {
     return res.status(200).json({ valid: true });
   } catch (error) {
