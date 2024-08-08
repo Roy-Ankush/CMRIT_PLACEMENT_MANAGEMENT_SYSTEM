@@ -9,6 +9,7 @@
   function Fpc() {
     const [isValid, setIsValid] = useState(false);
     const navigate = useNavigate();
+    const [email, setEmail] = useState('');
   
       
   const tabs = [
@@ -20,7 +21,10 @@
       const verifyUser = async () => {
         try {
           const res = await axios.get('http://localhost:8000/api/user/placementtrainer');
+          let email
           if (res.status === 200) {
+            email=res.data.email
+          setEmail(email);
             setIsValid(true);
             navigate('/placementtrainer/update_mark');
           } else {
@@ -40,7 +44,7 @@
       <>
         {isValid && (
           <>
-            <Navbar tabs={tabs} />
+            <Navbar tabs={tabs}  email={email} />
             <Outlet />
           </>
         )}

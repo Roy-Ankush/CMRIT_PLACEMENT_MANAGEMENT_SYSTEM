@@ -12,6 +12,7 @@ import student from '../routes/student.js';
 import fpc from "../routes/fpc.js"
 import forgotPassword from "../routes/forgotPassword.js"
 import resetPassword from "../routes/resetPassword.js"
+import logout from '../routes/logout.js'
 // import checkRole from '../middleware/checkrole.js';
 import trainer from '../routes/trainer.js';
 import studenttyldataroutes from '../routes/studenttyldataroute.js';
@@ -76,6 +77,7 @@ app.use('/', studenttyldataroutes);
 app.use('/',drives)
 app.use('/',officer)
 app.use('/',admin)
+app.use('/',logout)
 // app.listen(port, () => {
 //     console.log(`server is listening on port ${port}`)
 //   })
