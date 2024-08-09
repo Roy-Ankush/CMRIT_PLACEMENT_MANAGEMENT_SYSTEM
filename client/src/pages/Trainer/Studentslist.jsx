@@ -292,7 +292,7 @@ function Studentslist() {
             {Object.keys(marks.coreCx).map((key) => (
               <label key={key}>
                 {key}:
-                <input
+                <input className={styles.inputGroup}
                   type="text"
                   value={marks.coreCx[key] || ""}
                   onChange={(e) =>
@@ -305,7 +305,7 @@ function Studentslist() {
             {Object.keys(marks.coreProgramming).map((key) => (
               <label key={key}>
                 {key}:
-                <input
+                <input className={styles.inputGroup}
                   type="text"
                   value={marks.coreProgramming[key] || ""}
                   onChange={(e) =>
@@ -318,7 +318,7 @@ function Studentslist() {
             {Object.keys(marks.aptitude).map((key) => (
               <label key={key}>
                 {key}:
-                <input
+                <input className={styles.inputGroup}
                   type="text"
                   value={marks.aptitude[key] || ""}
                   onChange={(e) =>
@@ -331,7 +331,7 @@ function Studentslist() {
             {Object.keys(marks.softSkills).map((key) => (
               <label key={key}>
                 {key}:
-                <input
+                <input className={styles.inputGroup}
                   type="text"
                   value={marks.softSkills[key] || ""}
                   onChange={(e) =>
@@ -344,7 +344,7 @@ function Studentslist() {
             {Object.keys(marks.language).map((key) => (
               <label key={key}>
                 {key}:
-                <input
+                <input className={styles.inputGroup}
                   type="text"
                   value={marks.language[key] || ""}
                   onChange={(e) =>
@@ -355,7 +355,7 @@ function Studentslist() {
             ))}
             <label>
               FSD:
-              <input
+              <input className={styles.inputGroup}
                 type="text"
                 value={marks.fsd || ""}
                 onChange={(e) => handleMarksChange("fsd", null, e.target.value)}

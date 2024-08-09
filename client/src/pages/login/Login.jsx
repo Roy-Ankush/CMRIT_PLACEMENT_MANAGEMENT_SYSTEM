@@ -160,7 +160,7 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <h1 className={styles.loginLogo}>Login</h1>
           <div className={styles.details}>
-            <span className={styles.var}>useremail</span>
+            <span className={styles.var}>Email</span>
             <input
               type="email"
               name="email"
@@ -170,7 +170,7 @@ const Login = () => {
             {/* <i className={`fa-solid fa-envelope ${styles.faEnvelope}`}></i> */}
           </div>
           <div className={styles.details}>
-            <span className={styles.var}>password</span>
+            <span className={styles.var}>Password</span>
             <input
               type="password"
               name="password"
@@ -180,17 +180,17 @@ const Login = () => {
             {/* <i className={`fa-solid fa-lock ${styles.faLock}`} id="togglePassword"></i> */}
           </div>
           <div className={styles.details}>
-                        <span className={styles.var}>role</span>
+                        <span className={styles.var}>Role</span>
                         <select
                             name="role"
                             className={styles.userField}
                             onChange={(e) => setRole(e.target.value)}
                             value={role} required
                         >
-                            <option value="student">student</option>
-                            <option value="spc">spc</option>
-                            <option value="fpc">fpc</option>
-                            <option value="placementtrainer">Plcement Trainer</option>
+                            <option value="student">Student</option>
+                            {/* <option value="spc">Spc</option> */}
+                            <option value="fpc">Fpc</option>
+                            <option value="placementtrainer">Placement Trainer</option>
                             <option value="placementofficer">Placement Officer</option>
                             <option value="admin">Admin</option>
                         </select>
@@ -215,7 +215,7 @@ const Login = () => {
           </div> */}
           <div className={styles.registerLink}>
             <p>
-              Don"t have account? <NavLink to="/register">register</NavLink>
+              Don"t have account? <NavLink to="/register">Register here</NavLink>
             </p>
           </div>
         </form>
