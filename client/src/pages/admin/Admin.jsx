@@ -6,7 +6,7 @@ import axios from 'axios';
 // Set axios defaults globally
 axios.defaults.withCredentials = true;
 
-function Fpc() {
+function Admin () {
   const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -14,6 +14,7 @@ function Fpc() {
     // Define tabs for Navbar
     const tabs = [
       { path: "admin/home", label: "Home" },
+      { path: "admin/chat", label: "Chat" },
     ];
   useEffect(() => {
     const verifyUser = async () => {
@@ -50,4 +51,4 @@ function Fpc() {
   );
 }
 
-export default Fpc;
+export default Admin;

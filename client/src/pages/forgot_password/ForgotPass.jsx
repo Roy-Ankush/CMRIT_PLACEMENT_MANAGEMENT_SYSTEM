@@ -31,7 +31,7 @@ function ForgotPass() {
                 <form onSubmit={handleSubmit}>
                     <h1 className={styles.loginLogo}>Forgot Password</h1>
                     <div className={styles.details}>
-                        <span className={styles.var}>useremail</span>
+                        <span className={styles.var}>Registered email</span>
                         <input
                             type="email"
                             name="email"

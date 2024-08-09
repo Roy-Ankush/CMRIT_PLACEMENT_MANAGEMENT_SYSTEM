@@ -9,24 +9,29 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: rgb(21, 98, 98);
+    background:url('./cmrit.jpg');
     /* background: url(./register.jpg); */
     background-size: cover;
+    /* filter: brightness(0.7);  */
+ 
     background-position: center;
 }
 .loginForm{
-    width: 35vw;
+    width: 30vw;
     background: transparent;
-    border: solid black 2px;
-    backdrop-filter: blur(20px);
-    color: rgb(240, 235, 235);
+    border: solid black 2.5px;
+    backdrop-filter: blur(30px);
+    /* background-color:#334c7e; */
+    color: white;
     position: relative;
     border-radius: 10px;
-    padding: 40px 40px;
+    padding: 18px 40px;
 }
 .loginForm h1{
 font-size: 35px;
 text-align: center;
+color: black;
+font-weight: bold;
 }
 
 .details .var{
@@ -52,7 +57,7 @@ text-align: center;
     border: solid black 2px;
     border-radius: 40px;
     font-size: 15px;
-    color: white;
+    /* color: white; */
     padding: 20px 45px 20px 20px;
 }
 .details select{
@@ -63,12 +68,14 @@ text-align: center;
     outline: none;
     border: solid black 2px;
     border-radius: 40px;
+
     /* font-size: 15px;                          */
     /* color: white; */
     padding: 9px 22px 20px 15px;
 }
 .details option{
     top: 30px;
+    color:black;
 }
 
 .details i{
@@ -79,6 +86,7 @@ text-align: center;
     font-size: 20px;
 }
 
+
 .loginForm .remForgot{
     display: flex;
     justify-content: space-between;
@@ -86,12 +94,13 @@ text-align: center;
     padding: 10px;
 }
 
-.remForgot a{
+.remForgot u{
     text-decoration: none;
     color: white;
+    font-size: 16px;
     padding: 8px 0px;
 }
-.remForgot a:hover{
+.remForgot u:hover{
    text-decoration: underline;
 }
 .remForgot .cb{
@@ -102,8 +111,9 @@ text-align: center;
     
     width: 100%;
     height: 45px;
-    background-color: whitesmoke;
-    border: none;
+    /* background: rgb(245, 197, 136); */
+    border: 1.5px solid black;
+    /* border: none; */
     outline: none;
     border-radius: 40px;
     cursor: pointer;
@@ -112,13 +122,17 @@ text-align: center;
     margin-top: 12px;
 
 }
+.loginForm .btn:hover{
+    background-color: #ed9141;
+    border: none;
+}
 
 .loginForm .registerLink{
-    font-size: 15px;
+    font-size: 17px;
     text-align: center;
     position: relative;
     top: 24px;
-    /* hello */
+  
 }
 .registerLink p a{
     color: white;
@@ -131,12 +145,7 @@ text-align: center;
   text-decoration: underline;
 }
 
-/* input[type=password]::-ms-reveal {
-    display: block;
-  }
-.fa-lock{
-    cursor: pointer;
-} */
+
 
 .moreLogin{
     position: relative;
@@ -156,6 +165,7 @@ text-align: center;
 .loginForm .moreOption > * { 
     margin-right: 15px; 
   }
+
 
 hr{
     position: relative;

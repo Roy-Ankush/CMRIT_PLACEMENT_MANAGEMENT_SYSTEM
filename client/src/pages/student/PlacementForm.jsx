@@ -64,6 +64,7 @@ function App() {
           <div className={styles.leftSide}>
             <h2>Documents</h2>
             <input
+            className={styles.placementData}
               type="text"
               name="resumeLink"
               placeholder="Resume Link"
@@ -72,6 +73,7 @@ function App() {
               aria-label="Resume Link"
             />
             <input
+            className={styles.placementData}
               type="text"
               name="videoResumeLink"
               placeholder="Video Resume Link"
@@ -80,6 +82,7 @@ function App() {
               aria-label="Video Resume Link"
             />
             <input
+            className={styles.placementData}
               type="text"
               name="panLink"
               placeholder="PAN Link"
@@ -88,6 +91,7 @@ function App() {
               aria-label="PAN Link"
             />
             <input
+            className={styles.placementData}
               type="text"
               name="aadharLink"
               placeholder="Aadhar Link"
@@ -96,6 +100,7 @@ function App() {
               aria-label="Aadhar Link"
             />
             <input
+            className={styles.placementData}
               type="text"
               name="photoLink"
               placeholder="Photo Link"
@@ -104,6 +109,7 @@ function App() {
               aria-label="Photo Link"
             />
             <input
+            className={styles.placementData}
               type="text"
               name="collegeIdLink"
               placeholder="College ID Link"
@@ -112,6 +118,7 @@ function App() {
               aria-label="College ID Link"
             />
             <input
+            className={styles.placementData}
               type="text"
               name="passportLink"
               placeholder="Passport Link (optional)"
@@ -124,6 +131,7 @@ function App() {
           <div className={styles.rightSide}>
             <h2>Marks</h2>
             <input
+            className={styles.placementData}
               type="text"
               name="tenthMarksLink"
               placeholder="10th Marks Link"
@@ -132,6 +140,7 @@ function App() {
               aria-label="10th Marks Link"
             />
             <input
+            className={styles.placementData}
               type="text"
               name="twelfthMarksLink"
               placeholder="12th Marks Link"
@@ -140,6 +149,7 @@ function App() {
               aria-label="12th Marks Link"
             />
             <input
+            className={styles.placementData}
               type="text"
               name="ugMarksLink"
               placeholder="UG Marks Link"

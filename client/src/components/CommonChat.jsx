@@ -1,8 +1,9 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 import styles from './CommonChat.module.css';
 import { IoSend } from "react-icons/io5";
+import { IoChatbubblesSharp } from "react-icons/io5";
+
 
 const socket = io('http://localhost:8000'); // Ensure this URL is correct
 
@@ -47,6 +48,12 @@ const CommonChat = () => {
   };
 
   return (
+    <>
+    <div className={styles.chatContainer}>
+     <div className={styles.chatTitle}>
+          <IoChatbubblesSharp className={styles.chatIcon} />
+          <h5>Chat</h5>
+     </div>
     <div className={styles.chatSpace}>
     <div className={styles.chatBox}>
       {Array.isArray(messages) && messages.map((msg, index) => (
@@ -79,6 +86,8 @@ const CommonChat = () => {
       </button>
     </div>
   </div>
+  </div>
+  </>
   );
 };
 

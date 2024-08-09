@@ -1,10 +1,12 @@
+// routes/students.js
 import express from 'express';
 import StudentTyldata from '../models/studenttyldata.js';
+import { verifyToken } from '../middleware/auth.js';
 
 const router = express.Router();
 
 // Add a new student
-router.post('/api/students', async (req, res) => {
+router.post('/api/user/students', async (req, res) => {
   try {
     const student = new StudentTyldata(req.body);
     await student.save();
@@ -15,7 +17,7 @@ router.post('/api/students', async (req, res) => {
 });
 
 // Update an existing student
-router.put('/api/students/:id', async (req, res) => {
+router.put('/api/user/students/:id', async (req, res) => {
   try {
     const student = await StudentTyldata.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!student) return res.status(404).json({ message: 'Student not found' });
@@ -26,7 +28,7 @@ router.put('/api/students/:id', async (req, res) => {
 });
 
 // Get all students
-router.get('/api/students', async (req, res) => {
+router.get('/api/user/students', async (req, res) => {
   try {
     const students = await StudentTyldata.find();
     res.json(students);
@@ -36,7 +38,7 @@ router.get('/api/students', async (req, res) => {
 });
 
 // Get a student by ID
-router.get('/api/students/:id', async (req, res) => {
+router.get('/api/user/students/:id', async (req, res) => {
   try {
     const student = await StudentTyldata.findById(req.params.id);
     if (!student) return res.status(404).json({ message: 'Student not found' });
@@ -47,7 +49,8 @@ router.get('/api/students/:id', async (req, res) => {
 });
 
 // Update student marks
-router.patch('/api/students/:id/marks', async (req, res) => {
+// routes/students.js
+router.patch('/api/user/students/:id/marks', async (req, res) => {
   try {
     const { coreCx, coreProgramming, aptitude, softSkills, language, fsd } = req.body;
     const student = await StudentTyldata.findById(req.params.id);
@@ -59,12 +62,22 @@ router.patch('/api/students/:id/marks', async (req, res) => {
     if (aptitude) student.aptitude = aptitude;
     if (softSkills) student.softSkills = softSkills;
     if (language) student.language = language;
-    if (fsd) student.fsd = fsd;
+    if (fsd !== undefined) student.fsd = fsd; // Ensure fsd is treated as a string
 
     await student.save();
     res.json(student);
   } catch (err) {
     res.status(400).json({ message: err.message });
+  }
+});
+//get student data  , for displaying in student tyl tab
+router.get('/api/studentdata',verifyToken, async (req, res) => {
+  try {
+    const email = req.user.email;
+    const studentData = await StudentTyldata.findOne({ email: email }); // You can modify this to find a specific student
+    res.json(studentData);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 

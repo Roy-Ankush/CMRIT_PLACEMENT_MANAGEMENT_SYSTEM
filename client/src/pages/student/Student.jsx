@@ -24,18 +24,18 @@ function Student() {
         // if(res.status==200){
         let email;
         if (res.data.valid) {
+<<<<<<< HEAD
           email=res.data.email
           console.log("email is ===",email)
           console.log("yes verified");
+=======
+          email = res.data.email;
+>>>>>>> a40b8357c1bdcb553191cad56786e0b709bbe367
           setEmail(email);
         } else {
           navigate('/');
         }
       } catch (err) {
-        console.log(err.response.data)
-        console.log(err.response.status)
-        console.log(err.response.header)
-        console.log("inside student page of catch block");
         console.log(err);
         navigate('/')
       }
@@ -44,7 +44,11 @@ function Student() {
   }, [navigate])
   return (
     <>
+<<<<<<< HEAD
       <Navbar tabs={tabs} email={email}/>
+=======
+       <Navbar tabs={tabs} email={email} />
+>>>>>>> a40b8357c1bdcb553191cad56786e0b709bbe367
       <Outlet/>
     </>
   )

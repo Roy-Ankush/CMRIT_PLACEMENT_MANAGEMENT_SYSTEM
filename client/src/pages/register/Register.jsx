@@ -66,7 +66,7 @@ const Registration = () => {
         <form onSubmit={handleSubmit}>
           <h1 className={styles.loginLogo}>Register</h1>
           <div className={styles.details}>
-            <span className={styles.var}>useremail</span>
+            <span className={styles.var}>Email</span>
             <input
               type="email"
               name="email"
@@ -77,7 +77,7 @@ const Registration = () => {
             {/* <i className={`fa-solid fa-user ${styles.faUser}`}></i> */}
           </div>
           <div className={styles.details}>
-            <span className={styles.var}>confirm_password</span>
+            <span className={styles.var}>Confirm password</span>
             <input
               type="password"
               name="password"
@@ -115,7 +115,7 @@ const Registration = () => {
           </div> */}
           <div className={styles.registerLink}>
             <p>
-              Already have an account? <NavLink to="/login">login</NavLink>
+              Already have an account? <NavLink to="/login">Login</NavLink>
             </p>
           </div>
         </form>

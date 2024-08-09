@@ -57,7 +57,11 @@ function Officer() {
     <>
       {isValid && (
         <>
+<<<<<<< HEAD
           <Navbar tabs={tabs} email={email} />
+=======
+           <Navbar tabs={tabs} email={email} />
+>>>>>>> a40b8357c1bdcb553191cad56786e0b709bbe367
           <Outlet />
         </>
       )}

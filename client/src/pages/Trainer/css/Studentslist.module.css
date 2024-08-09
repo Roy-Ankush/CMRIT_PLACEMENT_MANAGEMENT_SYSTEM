@@ -1,94 +1,177 @@
 .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .searchContainer {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .searchBar {
-    width: 300px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .tabContainer {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .tabButton {
-    margin: 0 10px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .tabButton:hover {
-    background-color: #0056b3;
-  }
-  
-  .addStudentForm, .editForm {
-    margin: 20px auto;
-    width: 80%;
-    max-width: 600px;
-  }
-  
-  .formControl {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  .addButton, .updateButton {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background-color: #28a745;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-  }
-  
-  .addButton:hover, .updateButton:hover {
-    background-color: #218838;
-  }
-  
-  .studentTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .studentTable th, .studentTable td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .studentTable tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  
-  .studentTable tr:hover {
-    background-color: #ddd;
-  }
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Center the Add Student button */
+.addStudentButton {
+  display: block;
+  margin: 0 auto 20px auto; /* Center horizontally with a bottom margin */
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.addStudentButton:hover {
+  background-color: #0056b3;
+}
+
+.studentTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.studentTable th, .studentTable td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.studentTable tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.studentTable tr:hover {
+  background-color: #ddd;
+}
+
+.actionButton {
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.actionButton:hover {
+  background-color: #0056b3;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80%;
+  overflow-y: auto;
+}
+
+/* Ensure symmetry in input fields within modals */
+.modalContent .inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.modalContent .inputGroup label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.modalContent .inputGroup input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modalContent input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.saveButton, .closeButton {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.saveButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.saveButton:hover {
+  background-color: #0056b3;
+}
+
+.closeButton {
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+.closeButton:hover {
+  background-color: #e2e6ea;
+}
+/* Add this to your existing CSS */
+
+.addStudentModal .inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.addStudentModal .inputGroup label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.addStudentModal .inputGroup input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Make sure buttons in the add student modal also follow the styles */
+.addStudentModal .saveButton,
+.addStudentModal .closeButton {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addStudentModal .saveButton {
+  background-color: #007bff;
+  color: white;
+}
+
+.addStudentModal .saveButton:hover {
+  background-color: #0056b3;
+}
+
+.addStudentModal .closeButton {
+  background-color: #f8f9fa;
+  color: #343a40;
+}
+
+.addStudentModal .closeButton:hover {
+  background-color: #e2e6ea;
+}
+

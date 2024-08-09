@@ -6,11 +6,10 @@
   // Set axios defaults globally
   axios.defaults.withCredentials = true;
   
-  function Fpc() {
+  function Trainer () {
     const [isValid, setIsValid] = useState(false);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
-  
       
   const tabs = [
   { path: "placementtrainer/update_mark", label: "Update Mark" },
@@ -23,7 +22,7 @@
           const res = await axios.get('http://localhost:8000/api/user/placementtrainer');
           let email
           if (res.status === 200) {
-            email=res.data.email
+          email=res.data.email
           setEmail(email);
             setIsValid(true);
             navigate('/placementtrainer/update_mark');
@@ -44,7 +43,7 @@
       <>
         {isValid && (
           <>
-            <Navbar tabs={tabs}  email={email} />
+             <Navbar tabs={tabs} email={email} />
             <Outlet />
           </>
         )}
@@ -52,4 +51,4 @@
     );
   }
   
-  export default Fpc;
+  export default Trainer;

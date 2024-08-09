@@ -60,9 +60,9 @@ const handleRefreshToken = (req, res, next, refreshToken) => {
 
   try {
     const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
-    const newAccessToken = generateToken({ id: decoded.id });
+    const newAccessToken = generateToken({ id: decoded.id ,email: decoded.email});
     setAccessTokenCookie(res, newAccessToken);
-    req.user = { id: decoded.id }; // Attach the decoded user ID to req.user
+    req.user = { id: decoded.id , email: decoded.email }; // Attach the decoded user ID to req.user
     next();
   } catch (err) {
     return res.status(401).json({ valid: false, message: 'Invalid Refresh Tokensssss' });

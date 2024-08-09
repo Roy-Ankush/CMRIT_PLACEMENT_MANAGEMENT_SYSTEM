@@ -5,6 +5,8 @@ import logo from '/cmr_logo.png'; // Import the logo
 import { FaUser } from "react-icons/fa";
 // import Logout from "../pages/logout/Logout";
 import axios from 'axios'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = ({ tabs, email }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +25,13 @@ const Navbar = ({ tabs, email }) => {
       try {
         const res = await axios.post('http://localhost:8000/api/user/logout');
         if(res.status==200){
-          Navigate('/')
+          toast.success('Logout successful!', {
+            position: 'top-center',
+            autoClose: 2000,
+            pauseOnHover: false
+          })
+          location.reload();
+          Navigate('/login')
         }
       } catch (error) {
         console.log(error)

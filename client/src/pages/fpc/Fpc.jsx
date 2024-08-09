@@ -10,10 +10,10 @@ function Fpc() {
   const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-
     // Define tabs for Navbar
     const tabs = [
-      { path: "fpc/verify", label: "verify" },
+      { path: "fpc/verify", label: "Verify" },
+      { path: "fpc/chatroom", label: "Chat" },
     ];
   useEffect(() => {
     const verifyUser = async () => {
@@ -42,7 +42,7 @@ function Fpc() {
     <>
       {isValid && (
         <>
-          <Navbar tabs={tabs} email={email} />
+          <Navbar tabs={tabs} email={email}/>
           <Outlet />
         </>
       )}
