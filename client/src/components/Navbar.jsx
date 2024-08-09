@@ -31,7 +31,7 @@ const Navbar = ({ tabs, email }) => {
             pauseOnHover: false
           })
           location.reload();
-          Navigate('/')
+          Navigate('/login')
         }
       } catch (error) {
         console.log(error)

@@ -12,19 +12,21 @@ import ForgotPass from './pages/forgot_password/ForgotPass'
 import ResetPassword from './pages/reset_pass/ResetPassword'
 import Admin from './pages/admin/Admin'
 import OfficerHome from './pages/officer/OfficerHome'
-import Drives from './pages/officer/Drives'
 import Officer from './pages/officer/Officer'
 import Trainer from './pages/Trainer/Trainer';
 // import Batches from './pages/Trainer/Batches'; // If needed, uncomment and use
 import Studentsdata from './pages/Trainer/Studentslist'
 import Chat from './pages/Trainer/Chats'
 import Adminhome from './pages/admin/Adminhome'
+import FpcChatroom from './pages/fpc/FpcChatroom'
+import AdminChat from './pages/admin/AdminChat'
+import OfficerDrives from './pages/officer/OfficerDrives'
 function App() {
   return (
     <BrowserRouter>
     <ToastContainer/>
       <Routes>
-        <Route path='/' element={<Register/> }></Route>
+        <Route path='/' element={<Login/> }></Route>
         <Route path='/register' element={<Register/>}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/forgotPassword' element={<ForgotPass />}></Route>
@@ -39,11 +41,12 @@ function App() {
 
         <Route path='/fpc' element={<Fpc/>}>
           <Route path='/fpc/verify' element={<Verify/>}></Route> 
+          <Route path='/fpc/chatroom' element={<FpcChatroom/>}></Route> 
         </Route>
 
         <Route path='/officer' element={<Officer/>}>
           <Route path='/officer/home' element={<OfficerHome/>}></Route>
-          <Route path='/officer/drives' element={<Drives/>}></Route>
+          <Route path='/officer/drives' element={<OfficerDrives/>}></Route>
         </Route>
 
         <Route path='/placementtrainer' element={<Trainer />}>
@@ -53,6 +56,7 @@ function App() {
         
         <Route path='/admin' element={<Admin/>}>
           <Route path='/admin/home' element={<Adminhome/>}></Route>
+          <Route path='/admin/chat' element={<AdminChat/>}></Route>
         </Route>
 
       </Routes>
@@ -61,4 +65,3 @@ function App() {
 }
 
 export default App
-

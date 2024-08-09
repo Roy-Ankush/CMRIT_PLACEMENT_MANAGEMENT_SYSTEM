@@ -12,7 +12,8 @@ function Fpc() {
   const [email, setEmail] = useState('');
     // Define tabs for Navbar
     const tabs = [
-      { path: "fpc/verify", label: "verify" },
+      { path: "fpc/verify", label: "Verify" },
+      { path: "fpc/chatroom", label: "Chat" },
     ];
   useEffect(() => {
     const verifyUser = async () => {
