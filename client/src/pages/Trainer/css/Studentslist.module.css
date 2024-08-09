@@ -94,6 +94,13 @@
   border-radius: 4px;
 }
 
+.modalContent input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
 .saveButton, .closeButton {
   width: 100%;
   padding: 10px;
