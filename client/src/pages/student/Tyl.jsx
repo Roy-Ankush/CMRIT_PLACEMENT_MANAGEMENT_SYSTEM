@@ -35,7 +35,6 @@ const Tyl = () => {
     return <p>Error: {error}</p>;
   }
 
-  console.log('Student data:', studentData);
 
   const checkPassFail = (subjectMarks) => {
     return Object.values(subjectMarks).every(mark => parseFloat(mark) > 18) ? 'pass' : 'fail';

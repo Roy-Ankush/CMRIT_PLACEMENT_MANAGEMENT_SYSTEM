@@ -12,7 +12,8 @@ router.get("/api/user/admin",higherOrderMiddleware(verifyToken,checkRole),  asyn
     const user=await teacher.findOne({ _id: userID })
     // console.log(user.email)
     return res.status(200).json({valid:true,email:user.email})
-  } catch (error) {
+  } 
+  catch (error) {
     console.log(error);
     return res.status(500).json({ valid: false, message: "Internal Server Error" });
   }

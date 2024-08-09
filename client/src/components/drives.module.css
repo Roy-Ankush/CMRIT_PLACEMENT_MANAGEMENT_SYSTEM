@@ -1,0 +1,38 @@
+/* Container with padding to create spacing on the left and right */
+.contain {
+    padding-left: 15px; /* Adjust as needed */
+    padding-right: 15px; /* Adjust as needed */
+  }
+  
+  /* Style the card to take full width minus some spacing */
+  .driveCard {
+    width: calc(100% - 30px); /* Adjust the width to account for padding */
+    margin: 0 auto; /* Center the card horizontally */
+    border-radius: 0; /* Remove border radius */
+  }
+  
+  /* Style for the card header */
+  .driveHeader {
+    font-weight: bold;
+  }
+  
+  /* Group buttons together and apply spacing */
+  .buttonGroup {
+    margin-top: 10px; /* Adjust spacing between buttons */
+  }
+  
+  .buttonGroup button {
+    /* border-radius: 0; Remove border radius from buttons */
+    margin-right: 10px;
+    width: 5rem; /* Spacing between buttons */
+  }
+  
+  /* Style for the divider */
+  .divider {
+    border: 1px solid black;
+    margin: 10px 0 10px 0;
+  }
+  
+  .creationTime{
+    padding-top: 10px;
+  }

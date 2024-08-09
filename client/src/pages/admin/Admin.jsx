@@ -14,6 +14,7 @@ function Admin () {
     // Define tabs for Navbar
     const tabs = [
       { path: "admin/home", label: "Home" },
+      { path: "admin/chat", label: "Chat" },
     ];
   useEffect(() => {
     const verifyUser = async () => {

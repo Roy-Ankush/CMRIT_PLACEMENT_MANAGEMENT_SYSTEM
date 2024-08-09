@@ -1,9 +1,38 @@
+.chatContainer {
+  height: 34rem;
+  border: 1px solid #ccc;
+  /* margin-top: 10rem; */
+  border-radius: 8px;
+  padding: 1.2rem;
+  background-color: #f9f9f9;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.chatTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+  margin-bottom: 10px;
+}
+
+.chatIcon {
+  font-size: 30px;
+}
+
+.chatTitle h5 {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0; /* Remove default margin from the heading */
+}
 
 .chatSpace {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 32rem; /* Adjust height as needed */
+  height: 29rem; /* Adjust height as needed */
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 10px;
@@ -81,4 +110,3 @@
 .chatSendButton:hover {
   background: none; /* Ensure no background on hover */
 }
-

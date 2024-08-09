@@ -102,102 +102,8 @@ const OfficerHome = () => {
   };
 
   return (
-    // <div className={`row`}>
-    //   <div className={`col-sm-12 col-md-6`}>
-    //     <div className={`form-container`}>
-    //       <form onSubmit={handleSubmit} onReset={handleReset} encType="multipart/form-data">
-    //         <h5>Create Drive</h5>
-    //         <hr />
-    //         <div className={`form-group`}>
-    //           <label htmlFor="batch" className={`form-label`}>
-    //             Batch
-    //           </label>
-    //           <select
-    //             name="batch"
-    //             id="batch"
-    //             className={`form-control`}
-    //             value={driveData.batch}
-    //             onChange={handleChange}
-    //           >
-    //             <option value="">----</option>
-    //             <option value="2025">2025</option>
-    //             <option value="2026">2026</option>
-    //           </select>
-    //         </div>
-    //         <div className={`form-group`}>
-    //           <label htmlFor="company" className={`form-label`}>
-    //             Company Name
-    //           </label>
-    //           <input
-    //             type="text"
-    //             name="company"
-    //             id="company"
-    //             className={`form-control`}
-    //             value={driveData.company}
-    //             onChange={handleChange}
-    //           />
-    //         </div>
-    //         <div className={`form-group`}>
-    //           <label htmlFor="criteria" className="form-label">
-    //             Criteria
-    //           </label>
-    //           <textarea
-    //             name="criteria"
-    //             id="criteria"
-    //             rows={4}
-    //             value={driveData.criteria}
-    //             onChange={handleChange}
-    //             className={`form-control`}
-    //           ></textarea>
-    //         </div>
-    //         <div className={`form-group`}>
-    //           <label htmlFor="upload" className={`form-label`}>
-    //             Upload Files
-    //           </label>
-    //           <input
-    //             type="file"
-    //             name="uploads"
-    //             id="upload"
-    //             accept=".jpg,.jpeg,.png,.pdf"
-    //             onChange={handleFileChange}
-    //             className={`form-control`}
-    //             multiple
-    //           />
-    //         </div>
-    //         <div className={`form-group`}>
-    //           <label htmlFor="link" className={`form-label`}>
-    //             Registration Link
-    //           </label>
-    //           <input
-    //             type="text"
-    //             name="registrationLink"
-    //             id="link"
-    //             className={`form-control`}
-    //             value={driveData.registrationLink}
-    //             onChange={handleChange}
-    //           />
-    //         </div>
-    //         <div className={`form-buttons`}>
-    //           <button type="submit" className={`btn btn-primary`}>
-    //             Create
-    //           </button>
-    //           <button type="reset" className={`btn btn-light`}>
-    //             Cancel
-    //           </button>
-    //         </div>
-    //       </form>
-    //     </div>
-    //   </div>
-    //   <div className={`col-sm-12 col-md-6 mt-4 chat-container`}>
-    //     <div className={`chat-title`}>
-    //       <IoChatbubblesSharp className={`chat-icon`} />
-    //       <h5>Chat</h5>
-    //     </div>
-    //     <CommonChat />
-    //   </div>
-    // </div>
-    <div className={`row`}>
-      <div className={`col-sm-12 col-md-6`}>
+    <div className={`row ${styles.customRowStyle}`}>
+      <div className={`col-sm-12 col-md-6 ${styles.customStyle}`}>
         <div className={styles.formContain}>
           <form
             onSubmit={handleSubmit}
@@ -292,11 +198,7 @@ const OfficerHome = () => {
           </form>
         </div>
       </div>
-      <div className={`col-sm-12 col-md-6 mt-4 ${styles.chatContainer}`}>
-        <div className={styles.chatTitle}>
-          <IoChatbubblesSharp className={styles.chatIcon} />
-          <h5>Chat</h5>
-        </div>
+      <div className={`col-sm-12 col-md-6 mt-4`}>
         <CommonChat />
       </div>
     </div>
