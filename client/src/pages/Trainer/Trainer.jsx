@@ -14,7 +14,6 @@
   const tabs = [
   { path: "placementtrainer/update_mark", label: "Update Mark" },
     { path: "placementtrainer/chat", label: "Chat" },
-    
     ];
     useEffect(() => {
       const verifyUser = async () => {
@@ -38,12 +37,11 @@
       };
       verifyUser();
     }, []);
-  
     return (
       <>
         {isValid && (
           <>
-             <Navbar tabs={tabs} email={email} />
+            <Navbar tabs={tabs} email={email} />
             <Outlet />
           </>
         )}

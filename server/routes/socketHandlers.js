@@ -1,8 +1,16 @@
 import ChatMessage from '../models/ChatMessage.js'; // Adjust the import path if necessary
 
+let storedEmail = ''; // Use `let` to update the email value
+
 const setupSocketEvents = (io) => {
   io.on('connection', (socket) => {
-    console.log('A user connected');
+    // console.log('A user connected');
+
+    // Handle storing the email when the user connects
+    socket.on('storeEmail', ({ email }) => {
+      storedEmail = email;
+      // console.log('Email received and stored:', email);
+    });
 
     // Fetch messages from the database and send to the client
     socket.on('fetchMessages', async () => {
@@ -16,17 +24,26 @@ const setupSocketEvents = (io) => {
 
     // Handle incoming messages
     socket.on('sendMessage', async (message) => {
-        const newMessage = new ChatMessage({
-          text: message.text,
-          sender: message.sender || 'anonymous',
-          timestamp: new Date(),
-        });
-        await newMessage.save();
-        io.emit('receiveMessage', newMessage);
+      // Use the stored email as the sender
+      const sender = storedEmail;
+      // console.log('Sender used in sendMessage:', sender);
+
+      const newMessage = new ChatMessage({
+        text: message.text,
+        sender: sender, // Use the email as the sender
+        timestamp: new Date(),
       });
 
+      try {
+        await newMessage.save();
+        io.emit('receiveMessage', newMessage);
+      } catch (error) {
+        console.error('Error saving message:', error);
+      }
+    });
+
     socket.on('disconnect', () => {
-      console.log('A user disconnected');
+      // console.log('A user disconnected');
     });
   });
 };

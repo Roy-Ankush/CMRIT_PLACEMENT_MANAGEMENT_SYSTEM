@@ -68,6 +68,5 @@ const handleRefreshToken = (req, res, next, refreshToken) => {
     return res.status(401).json({ valid: false, message: 'Invalid Refresh Tokensssss' });
   }
 };
-  
 
   export { generateToken,setAccessTokenCookie,setRefreshTokenCookie,verifyToken };

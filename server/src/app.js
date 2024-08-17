@@ -22,6 +22,7 @@ import http from 'http';
 import { Server as SocketIo } from 'socket.io';
 import logout from '../routes/logout.js'
 import admin from '../routes/admin.js';
+
 const app = express();
 const server=http.createServer(app); 
 
@@ -80,6 +81,7 @@ app.use('/',admin)
 // app.listen(port, () => {
 //     console.log(`server is listening on port ${port}`)
 //   })
+
 app.use('/',logout)
 server.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
