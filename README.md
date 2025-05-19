@@ -113,3 +113,12 @@ This project enhances communication and efficiency, ensuring students and recrui
 ## 📬 Contact
 
 For questions or feedback, please reach out at **[w.ankitrajdev@gmail.com](mailto:w.ankitrajdev@gmail.com)**.
+
+
+
+Create a .env file in server folder
+
+PORT="8000"
+STUDENT_PASSWORD=12345
+STAFF_PASSWORD=123
+JWT_SECRET="xyz"
